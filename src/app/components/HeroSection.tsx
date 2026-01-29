@@ -1,15 +1,16 @@
 'use client';
 
 import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useTheme } from '../../lib/ThemeContext';
 import { cn } from '../../lib/utils';
-// Assuming you have these assets, otherwise replace with placeholders
+
+// Images
 import logoWhite from '../../assets/logo2.png'; 
-import logoBlack from '../../assets/logo1.png'; // Assuming logo1 is the dark version
+import logoBlack from '../../assets/logo1.png'; 
 
 const ROLES = [
-  "SEO Specialist",
+"SEO Specialist",
   "Grphic Designer",
   "Content Strategist",
   "Brand Identity",
@@ -21,8 +22,9 @@ const ROLES = [
 export function HeroSection() {
   const { isDark } = useTheme();
   const containerRef = useRef(null);
-  const pathRef = useRef(null);
-  const textRef = useRef(null);
+  
+  // FIX 1: Explicitly type the ref as an SVGPathElement
+  const pathRef = useRef<SVGPathElement>(null);
   
   // Scroll parallax for the whole container
   const { scrollY } = useScroll();
@@ -31,7 +33,6 @@ export function HeroSection() {
 
   // Animation State
   const [roleIndex, setRoleIndex] = useState(0);
-  const progress = useMotionValue(0);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
@@ -39,19 +40,18 @@ export function HeroSection() {
   const prevProgress = useRef(0);
 
   // The Infinite Loop Logic
-  useAnimationFrame((time, delta) => {
+  useAnimationFrame((time) => {
+    // Safety check: ensure the ref is attached
     if (!pathRef.current) return;
 
     const duration = 8000; // ms to complete one loop
-    // Calculate 0-1 progress based on time
     const t = (time % duration) / duration;
     
-    // Get path length and point
+    // Now TypeScript knows getTotalLength exists on SVGPathElement
     const pathLength = pathRef.current.getTotalLength();
     const point = pathRef.current.getPointAtLength(t * pathLength);
     
     // Center the coordinates relative to the SVG viewbox (400x200)
-    // We want the 0,0 of the div to be the center of the screen
     // SVG center is 200, 100.
     const offsetX = point.x - 200; 
     const offsetY = point.y - 100;
@@ -59,12 +59,7 @@ export function HeroSection() {
     x.set(offsetX);
     y.set(offsetY);
 
-    // Logic to switch text when reaching the "center" (the cross point)
-    // The infinity path crosses itself roughly at t=0, t=0.5, and t=1
-    // We add a small buffer so it doesn't flicker
-    const centerThreshold = 0.01;
-    
-    // Check if we passed the 50% mark or looped back to 0
+    // Logic to switch text when reaching the "center"
     const crossedMiddle = (prevProgress.current < 0.5 && t >= 0.5);
     const crossedStart = (prevProgress.current > 0.9 && t < 0.1);
 
@@ -167,7 +162,7 @@ export function HeroSection() {
             className="absolute z-20 flex items-center justify-center pointer-events-none"
           >
             <motion.div
-              key={roleIndex} // Triggers animation on change
+              key={roleIndex} 
               initial={{ scale: 0.8, opacity: 0, filter: "blur(5px)" }}
               animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -196,9 +191,9 @@ export function HeroSection() {
                isDark ? "bg-white" : "bg-purple-600"
              )} />
              
-             {/* The Image */}
+             {/* FIX 2: Removed .src, used variables directly as strings */}
              <img 
-               src={isDark ? logoWhite.src : logoBlack.src} 
+               src={isDark ? logoWhite : logoBlack} 
                alt="Graphikardia Logo" 
                className="w-24 h-24 md:w-32 md:h-32 object-contain relative z-10 drop-shadow-2xl"
              />
