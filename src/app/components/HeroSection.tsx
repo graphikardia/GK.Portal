@@ -5,7 +5,6 @@ import { useRef, useState } from 'react';
 import { useTheme } from '../../lib/ThemeContext';
 import { cn } from '../../lib/utils';
 
-// Updated Roles List
 const ROLES = [
   "SEO Specialist",
   "Graphic Designer",
@@ -19,8 +18,6 @@ const ROLES = [
 export function HeroSection() {
   const { isDark } = useTheme();
   const containerRef = useRef(null);
-  
-  // Explicitly type the ref for TypeScript access to getTotalLength
   const pathRef = useRef<SVGPathElement>(null);
   
   const { scrollY } = useScroll();
@@ -29,34 +26,23 @@ export function HeroSection() {
 
   // Animation State
   const [roleIndex, setRoleIndex] = useState(0);
-  
-  // We use percentages for positioning to ensure it's fully responsive
-  const xPercent = useMotionValue(50); // Start at center (50%)
-  const yPercent = useMotionValue(50); // Start at center (50%)
-  
-  // Track progress to switch roles at the intersection
+  const xPercent = useMotionValue(50);
+  const yPercent = useMotionValue(50);
   const prevProgress = useRef(0);
 
   useAnimationFrame((time) => {
     if (!pathRef.current) return;
 
-    const duration = 12000; // Speed of the loop (12 seconds)
+    const duration = 12000; 
     const t = (time % duration) / duration;
     
-    // SVG Math
     const pathLength = pathRef.current.getTotalLength();
     const point = pathRef.current.getPointAtLength(t * pathLength);
     
-    // CONVERSION TO PERCENTAGE
-    // Our ViewBox is 0 0 400 200.
-    // point.x goes from 0 to 400 -> map to 0% to 100%
-    // point.y goes from 0 to 200 -> map to 0% to 100%
+    // Map 0-400 (width) and 0-200 (height) to percentages
     xPercent.set((point.x / 400) * 100);
     yPercent.set((point.y / 200) * 100);
 
-    // Logic to swap text:
-    // The path crosses the center (approx t=0.5 and t=0/1)
-    // We add a small buffer to detect the crossing
     const crossedMiddle = (prevProgress.current < 0.5 && t >= 0.5);
     const crossedStart = (prevProgress.current > 0.98 && t < 0.02);
 
@@ -67,12 +53,15 @@ export function HeroSection() {
     prevProgress.current = t;
   });
 
-  // Dynamic transforms for the follower div to convert % numbers to CSS strings
   const left = useTransform(xPercent, (val) => `${val}%`);
   const top = useTransform(yPercent, (val) => `${val}%`);
 
   return (
-    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden px-4">
+    // CHANGED: Removed 'h-screen'. Added 'py-24 md:py-32' for natural spacing.
+    <section 
+      ref={containerRef} 
+      className="relative w-full py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden px-4"
+    >
       
       {/* --- Background Ambient Glow --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -80,11 +69,10 @@ export function HeroSection() {
           animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.1, 1] }}
           transition={{ duration: 8, repeat: Infinity }}
           className={cn(
-            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full blur-[120px]",
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full blur-[100px]",
             isDark ? "bg-purple-900/30" : "bg-purple-300/40"
           )} 
         />
-        {/* Subtle Grid */}
         <div className="absolute inset-0 opacity-[0.05]" 
              style={{ 
                backgroundImage: `linear-gradient(${isDark ? '#fff' : '#000'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? '#fff' : '#000'} 1px, transparent 1px)`, 
@@ -96,17 +84,16 @@ export function HeroSection() {
       <motion.div style={{ y: y1, opacity }} className="relative z-10 w-full flex flex-col items-center">
         
         {/* --- Top Decorative Text --- */}
-        <div className="absolute -top-24 md:-top-32 flex justify-center gap-4 w-full opacity-60">
+        <div className="mb-8 md:mb-12 flex justify-center gap-6 opacity-60">
            {["CREATIVE", "DIGITAL", "GLOBAL"].map(s => (
              <span key={s} className="text-[10px] md:text-xs tracking-[0.3em] font-mono uppercase">{s}</span>
            ))}
         </div>
 
         {/* --- The Responsive Loop Container --- */}
-        {/* max-w-[95vw] ensures it fits on mobile. aspect-[2/1] locks the ratio to match SVG viewBox. */}
         <div className="relative w-full max-w-[95vw] md:max-w-[700px] aspect-[2/1] flex items-center justify-center">
           
-          {/* 1. The SVG Layer */}
+          {/* SVG Layer */}
           <svg 
             className="absolute inset-0 w-full h-full overflow-visible"
             viewBox="0 0 400 200"
@@ -114,9 +101,9 @@ export function HeroSection() {
           >
             <defs>
               <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#a855f7" />   {/* Purple */}
-                <stop offset="50%" stopColor="#ec4899" />  {/* Pink */}
-                <stop offset="100%" stopColor="#3b82f6" /> {/* Blue */}
+                <stop offset="0%" stopColor="#a855f7" />   
+                <stop offset="50%" stopColor="#ec4899" />  
+                <stop offset="100%" stopColor="#3b82f6" /> 
               </linearGradient>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
@@ -127,13 +114,7 @@ export function HeroSection() {
               </filter>
             </defs>
             
-            {/* THE PATH: 
-               This draws a figure-8 starting from center (200,100).
-               1. Moves Up-Right (towards 380, 100)
-               2. Loops back to Center
-               3. Moves Down-Left (towards 20, 100)
-               4. Loops back to Center
-            */}
+            {/* Hidden Path Calculation */}
             <path
               ref={pathRef}
               d="M 200 100 C 260 40 380 40 380 100 C 380 160 260 160 200 100 C 140 40 20 40 20 100 C 20 160 140 160 200 100 Z"
@@ -141,12 +122,12 @@ export function HeroSection() {
               stroke="transparent"
             />
 
-            {/* The Visible Glowing Path */}
+            {/* Visible Path */}
             <motion.path
               d="M 200 100 C 260 40 380 40 380 100 C 380 160 260 160 200 100 C 140 40 20 40 20 100 C 20 160 140 160 200 100 Z"
               fill="none"
               stroke="url(#infinityGradient)"
-              strokeWidth="2" // Thinner line for elegance
+              strokeWidth="2"
               strokeLinecap="round"
               filter={isDark ? "url(#glow)" : ""}
               className="drop-shadow-lg"
@@ -156,8 +137,7 @@ export function HeroSection() {
             />
           </svg>
 
-          {/* 2. The Floating "Role" Badge */}
-          {/* Positioned via left/top percentages calculated in the loop */}
+          {/* Floating Badge */}
           <motion.div 
             style={{ left, top }}
             className="absolute z-20 flex items-center justify-center w-0 h-0"
@@ -169,7 +149,7 @@ export function HeroSection() {
               exit={{ scale: 0.5, opacity: 0 }}
               className={cn(
                 "px-3 py-1.5 rounded-full text-[10px] md:text-sm font-bold whitespace-nowrap border backdrop-blur-xl shadow-xl uppercase tracking-wider",
-                "-translate-x-1/2 -translate-y-1/2", // Centers the div on the exact point
+                "-translate-x-1/2 -translate-y-1/2", 
                 isDark 
                   ? "bg-black/60 border-purple-500/50 text-white shadow-purple-500/20" 
                   : "bg-white/90 border-purple-300 text-purple-900 shadow-purple-200/50"
@@ -179,7 +159,7 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* 3. The Central Text "GRAPHIKARDIA" */}
+          {/* Central Text */}
           <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9 }}
