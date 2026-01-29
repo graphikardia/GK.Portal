@@ -2,45 +2,37 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
+// Verify these paths match your project structure
 import { useTheme } from '../../lib/ThemeContext'; 
 import { cn } from '../../lib/utils';
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const { isDark } = useTheme();
   
+  // State
   const [started, setStarted] = useState(false);
   const [count, setCount] = useState(0);
   const [beat, setBeat] = useState(false);
-  const [audioError, setAudioError] = useState(false); 
+  const [audioError, setAudioError] = useState(false); // Tracks if file is missing
   
-  // Ref for the HTML Audio Element
+  // Audio Ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // 1. Handle Start (Click)
+  // 1. CLICK TO START
   const handleStart = () => {
     if (started) return;
     
-    // Attempt to play immediately on user interaction
+    // Attempt to play audio immediately
     if (audioRef.current) {
-      audioRef.current.volume = 0.6;
-      const playPromise = audioRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setStarted(true);
-          })
-          .catch((error) => {
-            console.error("Playback failed:", error);
-            setStarted(true);
-          });
-      }
-    } else {
-        setStarted(true);
+      audioRef.current.volume = 1.0; // Max Volume
+      audioRef.current.play().catch((e) => {
+        console.warn("Audio playback failed (benign if file missing):", e);
+      });
     }
+    setStarted(true);
   };
 
-  // 2. Loading Timer
+  // 2. LOADING COUNTER LOGIC
   useEffect(() => {
     if (!started) return;
 
@@ -49,21 +41,23 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         if (prev >= 100) {
           clearInterval(timer);
           
-          // Fade out audio
+          // Audio Fade Out Logic
           if (audioRef.current) {
-             const fadeOut = setInterval(() => {
+             const fade = setInterval(() => {
                  if(audioRef.current && audioRef.current.volume > 0.05) {
                      audioRef.current.volume -= 0.05;
                  } else {
                      audioRef.current?.pause(); 
-                     clearInterval(fadeOut);
+                     clearInterval(fade);
                  }
              }, 50);
           }
           
+          // Wait slightly before removing screen
           setTimeout(onComplete, 800); 
           return 100;
         }
+        // Random increment speed
         return Math.min(prev + (Math.random() * 2.5), 100);
       });
     }, 40);
@@ -71,11 +65,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     return () => clearInterval(timer);
   }, [started, onComplete]);
 
-  // 3. Heartbeat Visual Sync
+  // 3. VISUAL BEAT SYNC (60 BPM)
   useEffect(() => {
     if (!started) return;
-
-    // 60 BPM = 1000ms
+    
+    // 60 BPM = 1 beat every 1000ms
     const beatInterval = setInterval(() => {
       setBeat(true);
       setTimeout(() => setBeat(false), 150); 
@@ -94,21 +88,17 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
       transition={{ duration: 0.8 }}
     >
-      {/* --- AUDIO PLAYER WITH RAW GITHUB LINK --- */}
+      {/* --- AUDIO PLAYER --- */}
+      {/* This looks for the file in your public folder */}
       <audio 
         ref={audioRef} 
-        // UPDATED LINK BELOW:
-        src="https://raw.githubusercontent.com/gk-bit-2026/my-web/6e11cad53a92b48d25353be914841e47a423f1bb/heartbeat.mp3" 
+        src="/heartbeat.mp3" 
         loop 
         preload="auto"
-        crossOrigin="anonymous" // Good practice for remote files
-        onError={(e) => {
-            console.error("Remote audio stream failed", e);
-            setAudioError(true);
-        }}
+        onError={() => setAudioError(true)}
       />
 
-      {/* Background Grid */}
+      {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" 
            style={{ 
              backgroundImage: `linear-gradient(${isDark ? '#fff' : '#000'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? '#fff' : '#000'} 1px, transparent 1px)`, 
@@ -116,16 +106,18 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
            }} 
       />
 
-      {/* DEBUG MESSAGE */}
+      {/* Debug Error Message (Visible only if file is missing) */}
       {audioError && (
-          <div className="absolute top-10 left-0 right-0 text-center text-red-500 bg-red-100 p-2 z-[10000]">
-              ⚠️ Audio stream failed. Check internet connection.
+          <div className="absolute top-4 left-0 right-0 text-center z-[10000]">
+             <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-mono border border-red-200">
+                ⚠ Audio file missing: public/heartbeat.mp3
+             </span>
           </div>
       )}
 
       <AnimatePresence mode='wait'>
         {!started ? (
-           /* --- WAITING SCREEN --- */
+           /* --- STATE 1: STANDBY --- */
            <motion.div 
              key="waiting"
              initial={{ opacity: 0 }} 
@@ -133,7 +125,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
              exit={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
              className="z-20 flex flex-col items-center gap-6"
            >
-              {/* Pulse Ring */}
+              {/* Pulse Ring UI */}
               <div className="relative">
                   <div className={cn(
                       "w-24 h-24 rounded-full border-2 flex items-center justify-center animate-[pulse_2s_infinite]",
@@ -148,26 +140,21 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               </div>
               
               <div className="text-center">
-                  <p className="font-mono text-xs tracking-[0.3em] opacity-70 uppercase mb-2">
-                     System Standby
-                  </p>
-                  <p className={cn(
-                      "font-bold text-sm tracking-widest uppercase border-b pb-1 inline-block",
-                      isDark ? "border-white/20" : "border-black/20"
-                  )}>
+                  <p className="font-mono text-xs tracking-[0.3em] opacity-70 uppercase mb-2">System Standby</p>
+                  <p className={cn("font-bold text-sm tracking-widest uppercase border-b pb-1 inline-block", isDark ? "border-white/20" : "border-black/20")}>
                      Click to Initialize
                   </p>
               </div>
            </motion.div>
         ) : (
-           /* --- LOADING SCREEN --- */
+           /* --- STATE 2: LOADING --- */
            <motion.div 
              key="loading"
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              className="z-20 w-full flex flex-col items-center"
            >
-                {/* Visual Pulse */}
+                {/* Visual Beat Pulse Overlay */}
                 <motion.div 
                     animate={{ opacity: beat ? 0.3 : 0 }}
                     transition={{ duration: 0.1 }}
@@ -187,6 +174,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                     >
                         Graphikardia
                     </motion.h1>
+                    {/* Status Dot */}
                     <div className={cn(
                         "absolute -top-3 -right-3 w-3 h-3 rounded-full transition-colors duration-300",
                         isDark ? "bg-green-500 shadow-[0_0_15px_#22c55e]" : "bg-red-500 shadow-[0_0_15px_#ef4444]",
@@ -203,15 +191,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                     Breathing_Life_Into_Pixels
                 </motion.p>
 
-                {/* ECG Line */}
+                {/* ECG Animation Line */}
                 <div className="relative w-full h-40 overflow-hidden flex items-center mb-10">
-                    <div className={cn(
-                        "absolute inset-0 z-20 pointer-events-none",
-                        isDark 
-                            ? "bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" 
-                            : "bg-gradient-to-r from-white via-transparent to-white"
-                    )} />
-
+                    <div className={cn("absolute inset-0 z-20 pointer-events-none", isDark ? "bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" : "bg-gradient-to-r from-white via-transparent to-white")} />
+                    
                     <svg className="w-full h-full min-w-[1000px]" preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="ecgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -223,10 +206,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                             </linearGradient>
                             <filter id="glow">
                                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
+                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
                             </filter>
                         </defs>
                         <motion.path
@@ -247,18 +227,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                 <div className="flex flex-col items-center gap-3">
                     <div className="w-56 h-[2px] bg-gray-200/20 rounded-full overflow-hidden">
                         <motion.div 
-                            className={cn(
-                                "h-full shadow-[0_0_15px_currentColor]",
-                                isDark ? "bg-purple-500" : "bg-red-500"
-                            )}
+                            className={cn("h-full shadow-[0_0_15px_currentColor]", isDark ? "bg-purple-500" : "bg-red-500")}
                             initial={{ width: 0 }}
                             animate={{ width: `${count}%` }}
                         />
                     </div>
-                    <span className={cn(
-                        "font-mono text-[10px] tracking-widest",
-                        isDark ? "text-purple-400" : "text-red-500"
-                    )}>
+                    <span className={cn("font-mono text-[10px] tracking-widest", isDark ? "text-purple-400" : "text-red-500")}>
                         SYSTEM_INIT :: {Math.floor(count)}%
                     </span>
                 </div>
