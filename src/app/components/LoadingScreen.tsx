@@ -11,7 +11,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [started, setStarted] = useState(false);
   const [count, setCount] = useState(0);
   const [beat, setBeat] = useState(false);
-  const [audioError, setAudioError] = useState(false); // Debugging state
+  const [audioError, setAudioError] = useState(false); 
   
   // Ref for the HTML Audio Element
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -28,12 +28,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Audio started successfully
             setStarted(true);
           })
           .catch((error) => {
             console.error("Playback failed:", error);
-            // Even if audio fails, we start the visual sequence
             setStarted(true);
           });
       }
@@ -96,15 +94,16 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
       transition={{ duration: 0.8 }}
     >
-      {/* --- THE HIDDEN AUDIO PLAYER --- */}
-      {/* This is more robust than "new Audio()" */}
+      {/* --- AUDIO PLAYER WITH RAW GITHUB LINK --- */}
       <audio 
         ref={audioRef} 
-        src="/heartbeat.mp3" 
+        // UPDATED LINK BELOW:
+        src="https://raw.githubusercontent.com/gk-bit-2026/my-web/6e11cad53a92b48d25353be914841e47a423f1bb/heartbeat.mp3" 
         loop 
         preload="auto"
+        crossOrigin="anonymous" // Good practice for remote files
         onError={(e) => {
-            console.error("Audio file not found or corrupted", e);
+            console.error("Remote audio stream failed", e);
             setAudioError(true);
         }}
       />
@@ -117,10 +116,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
            }} 
       />
 
-      {/* DEBUG MESSAGE (Only shows if file is missing) */}
+      {/* DEBUG MESSAGE */}
       {audioError && (
           <div className="absolute top-10 left-0 right-0 text-center text-red-500 bg-red-100 p-2 z-[10000]">
-              ⚠️ Audio file not found. Check public folder.
+              ⚠️ Audio stream failed. Check internet connection.
           </div>
       )}
 
