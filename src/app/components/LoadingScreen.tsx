@@ -5,6 +5,10 @@ import { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../../lib/ThemeContext'; 
 import { cn } from '../../lib/utils';
 
+// IMPORT THE AUDIO FILE HERE
+// This allows Next.js to bundle it correctly from the src folder
+import heartbeatSound from '../../assets/heartbeat.mp3';
+
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const { isDark } = useTheme();
   const [count, setCount] = useState(0);
@@ -12,9 +16,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Ensure the path is correct relative to your public folder
-    audioRef.current = new Audio('../../assets/heartbeat.mp3');
-    audioRef.current.volume = 0.5;
+    // USE THE IMPORTED VARIABLE HERE
+    const audio = new Audio(heartbeatSound);
+    audio.volume = 0.5; // Adjusted volume
+    audioRef.current = audio;
 
     const timer = setInterval(() => {
       setCount((prev) => {
@@ -37,8 +42,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(() => {
-            // Autoplay prevention catch
+        // Attempt to play - browsers may block this until interaction
+        audioRef.current.play().catch((err) => {
+            // Optional: console.log("Audio blocked by browser policy", err);
         });
       }
 
@@ -57,6 +63,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
       transition={{ duration: 0.8 }}
     >
+      {/* Background Grid */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" 
            style={{ 
              backgroundImage: `linear-gradient(${isDark ? '#fff' : '#000'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? '#fff' : '#000'} 1px, transparent 1px)`, 
@@ -64,6 +71,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
            }} 
       />
       
+      {/* Vignette Pulse */}
       <motion.div 
         animate={{ opacity: beat ? 0.4 : 0 }}
         transition={{ duration: 0.2 }}
@@ -77,6 +85,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
       <div className="relative z-10 w-full flex flex-col items-center justify-center">
         
+        {/* Logo Section */}
         <div className="relative mb-6">
             <motion.h1 
                 animate={{ scale: beat ? 1.08 : 1 }}
@@ -93,6 +102,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             )} />
         </div>
 
+        {/* Slogan */}
         <motion.p 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,8 +114,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             Breathing_Life_Into_Pixels
         </motion.p>
 
+        {/* ECG Line */}
         <div className="relative w-full h-40 overflow-hidden flex items-center">
-            
             <div className={cn(
                 "absolute inset-0 z-20 pointer-events-none",
                 isDark 
@@ -151,6 +161,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             </svg>
         </div>
 
+        {/* Loading Bar */}
         <div className="absolute bottom-12 flex flex-col items-center gap-3">
              <div className="w-56 h-[2px] bg-gray-200/20 rounded-full overflow-hidden">
                 <motion.div 
