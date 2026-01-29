@@ -9,14 +9,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const { isDark } = useTheme();
   const [count, setCount] = useState(0);
   const [beat, setBeat] = useState(false);
-  
-  // Audio Ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // 1. Initialize Audio & Loading Counter
   useEffect(() => {
-    // UPDATED PATH HERE
-    // Ensure the file exists at this location relative to your public folder or serve root
+    // Ensure the path is correct relative to your public folder
     audioRef.current = new Audio('../../assets/heartbeat.mp3');
     audioRef.current.volume = 0.5;
 
@@ -24,10 +20,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       setCount((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 1000); // Wait one last beat before closing
+          setTimeout(onComplete, 1000); 
           return 100;
         }
-        // Increment logic
         const increment = Math.random() > 0.5 ? 1.5 : 0.5;
         return Math.min(prev + increment, 100);
       });
@@ -36,22 +31,17 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     return () => clearInterval(timer);
   }, [onComplete]);
 
-  // 2. The 60 BPM Heartbeat Logic (Syncs Visuals + Audio)
   useEffect(() => {
-    // 60 BPM = 1 beat every 1000ms exactly.
     const beatInterval = setInterval(() => {
       setBeat(true);
       
-      // Play Sound
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
         audioRef.current.play().catch(() => {
-            // Browsers block audio until user interaction. 
-            // This is expected behavior for auto-loading screens.
+            // Autoplay prevention catch
         });
       }
 
-      // Reset beat state quickly so the "spring" animation can recoil
       setTimeout(() => setBeat(false), 150); 
     }, 1000); 
 
@@ -67,7 +57,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
       transition={{ duration: 0.8 }}
     >
-      {/* --- Ambient Background --- */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" 
            style={{ 
              backgroundImage: `linear-gradient(${isDark ? '#fff' : '#000'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? '#fff' : '#000'} 1px, transparent 1px)`, 
@@ -75,7 +64,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
            }} 
       />
       
-      {/* Vignette Pulse: The screen darkens/lightens with the beat */}
       <motion.div 
         animate={{ opacity: beat ? 0.4 : 0 }}
         transition={{ duration: 0.2 }}
@@ -87,13 +75,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         )}
       />
 
-      {/* --- Center Content --- */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center">
         
-        {/* 1. The Logo Typography */}
         <div className="relative mb-6">
             <motion.h1 
-                // Spring animation mimics the "Lub-Dub" recoil of a heart
                 animate={{ scale: beat ? 1.08 : 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 className="text-4xl md:text-7xl font-black tracking-tighter italic uppercase text-center"
@@ -101,7 +86,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                 Graphikardia
             </motion.h1>
             
-            {/* The "Life Light" Dot */}
             <div className={cn(
                 "absolute -top-3 -right-3 w-3 h-3 rounded-full transition-colors duration-300",
                 isDark ? "bg-green-500 shadow-[0_0_15px_#22c55e]" : "bg-red-500 shadow-[0_0_15px_#ef4444]",
@@ -109,7 +93,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             )} />
         </div>
 
-        {/* 2. The Slogan */}
         <motion.p 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,10 +104,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             Breathing_Life_Into_Pixels
         </motion.p>
 
-        {/* 3. The 60 BPM ECG Line */}
         <div className="relative w-full h-40 overflow-hidden flex items-center">
             
-            {/* Gradient Mask for Fade In/Out */}
             <div className={cn(
                 "absolute inset-0 z-20 pointer-events-none",
                 isDark 
@@ -132,7 +113,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                     : "bg-gradient-to-r from-white via-transparent to-white"
             )} />
 
-            {/* The ECG SVG */}
             <svg className="w-full h-full min-w-[1000px]" preserveAspectRatio="none">
                 <defs>
                     <linearGradient id="ecgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -152,5 +132,45 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                     </filter>
                 </defs>
 
-                {/* Path Logic:
-                   The audio is 60BPM (1 beat/sec).
+                <motion.path
+                    d="M 0 60 L 400 60 L 420 40 L 440 60 L 460 60 L 480 10 L 500 110 L 520 60 L 540 60 L 560 40 L 580 60 L 1000 60 L 1020 40 L 1040 60 L 1060 60 L 1080 10 L 1100 110 L 1120 60 L 1140 60 L 1160 40 L 1180 60 L 1600 60"
+                    fill="none"
+                    stroke="url(#ecgGradient)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    filter={isDark ? "url(#glow)" : ""}
+                    initial={{ x: 0 }}
+                    animate={{ x: -600 }} 
+                    transition={{ 
+                        repeat: Infinity, 
+                        ease: "linear", 
+                        duration: 2 
+                    }}
+                />
+            </svg>
+        </div>
+
+        <div className="absolute bottom-12 flex flex-col items-center gap-3">
+             <div className="w-56 h-[2px] bg-gray-200/20 rounded-full overflow-hidden">
+                <motion.div 
+                    className={cn(
+                        "h-full shadow-[0_0_15px_currentColor]",
+                        isDark ? "bg-purple-500" : "bg-red-500"
+                    )}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${count}%` }}
+                />
+             </div>
+             <span className={cn(
+                 "font-mono text-[10px] tracking-widest",
+                 isDark ? "text-purple-400" : "text-red-500"
+             )}>
+                SYSTEM_INIT :: {Math.floor(count)}%
+             </span>
+        </div>
+
+      </div>
+    </motion.div>
+  );
+}
