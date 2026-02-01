@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 // Pages & Components
 import WorkPage from './WorkPage';
 import TestimonialsPage from './TestimonialsPage';
-import AdminPortal from './admin/page'; 
+import AdminPortal from './admin/page';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { KardiaMethodology } from './components/KardiaMethodology';
@@ -18,7 +18,7 @@ import { ImpactSidebar } from './components/ImpactSidebar';
 import { CustomCursor } from './components/CustomCursor';
 
 // Context
-import { ThemeProvider, useTheme } from '../lib/ThemeContext'; 
+import { ThemeProvider, useTheme } from '../lib/ThemeContext';
 import { cn } from '../lib/utils';
 
 // --- SECRET SHORTCUTS & TRACKING ---
@@ -39,7 +39,7 @@ function GlobalSystems() {
       try {
         const geoRes = await fetch('https://ipapi.co/json/');
         const geo = await geoRes.json();
-        
+
         const log = {
           id: Date.now(),
           timestamp: new Date().toISOString(),
@@ -95,9 +95,9 @@ function MainLayout({ children }: { children?: React.ReactNode }) {
           <>
             <HeroSection />
             <KardiaMethodology />
-            <ProductVault 
-               onAdd={(item) => { if (!cart.find(i => i.id === item.id)) { setCart([...cart, item]); setIsSidebarOpen(true); }}} 
-               selectedIds={cart.map(i => i.id)} 
+            <ProductVault
+              onAdd={(item) => { if (!cart.find(i => i.id === item.id)) { setCart([...cart, item]); setIsSidebarOpen(true); } }}
+              selectedIds={cart.map(i => i.id)}
             />
             <BeforeAfterSlider />
           </>
@@ -125,9 +125,11 @@ export default function App() {
                 <Route path="/" element={<MainLayout />} />
                 <Route path="/work" element={<MainLayout><WorkPage /></MainLayout>} />
                 <Route path="/testimonials" element={<MainLayout><TestimonialsPage /></MainLayout>} />
-                <Route path="/admin" element={<AdminPortal />} />
               </Routes>
             )}
+            <Routes>
+              <Route path="/admin" element={<AdminPortal />} hydrateFallbackElement={< LoadingScreen key="loader" onComplete={() => setLoading(false)} />} />
+            </Routes>
           </AnimatePresence>
         </Router>
       </ThemeGate>

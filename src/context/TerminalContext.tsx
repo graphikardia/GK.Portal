@@ -18,7 +18,7 @@ const DEFAULT_DATA = {
   auth: {
     // DO NOT share this. This is your 2FA Secret. 
     // Use an online TOTP secret generator to get a new one.
-    secret: "KVKFKRCPNZQUYMLXOVZGUYLTKBFVE62K" 
+    secret: import.meta.env.VITE_OTPLIB_SECRET
   }
 };
 
