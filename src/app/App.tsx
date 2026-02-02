@@ -1,32 +1,26 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-
-// Pages & Components
-import WorkPage from './WorkPage';
-import TestimonialsPage from './TestimonialsPage';
-import AdminPortal from './admin/page';
-import { Navigation } from './components/Navigation';
-import { HeroSection } from './components/HeroSection';
-import { KardiaMethodology } from './components/KardiaMethodology';
-import { ProductVault } from './components/ProductVault';
-import { BeforeAfterSlider } from './components/BeforeAfterSlider';
-import { FooterCTA } from './components/FooterCTA';
-import { LoadingScreen } from './components/LoadingScreen';
-import { ImpactSidebar } from './components/ImpactSidebar';
-import { CustomCursor } from './components/CustomCursor';
-
-// Context
+import { useEffect, useRef, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from '../lib/ThemeContext';
 import { cn } from '../lib/utils';
+import TestimonialsPage from './TestimonialsPage';
+import WorkPage from './WorkPage';
+import AdminPortal from './admin/page';
+import { BeforeAfterSlider } from './components/BeforeAfterSlider';
+import { CustomCursor } from './components/CustomCursor';
+import { FooterCTA } from './components/FooterCTA';
+import { HeroSection } from './components/HeroSection';
+import { ImpactSidebar } from './components/ImpactSidebar';
+import { KardiaMethodology } from './components/KardiaMethodology';
+import { LoadingScreen } from './components/LoadingScreen';
+import { Navigation } from './components/Navigation';
+import { ProductVault } from './components/ProductVault';
 
-// --- SECRET SHORTCUTS & TRACKING ---
 function GlobalSystems() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. KEYBOARD SHORTCUT (Ctrl + Alt + X)
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'x') {
         e.preventDefault();
@@ -34,7 +28,6 @@ function GlobalSystems() {
       }
     };
 
-    // 2. SILENT LOCATION TRACKING (No Permission Popup)
     const traceVisitor = async () => {
       try {
         const geoRes = await fetch('https://ipapi.co/json/');
@@ -81,7 +74,6 @@ function MainLayout({ children }: { children?: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // MOBILE SECRET: Hold Logo/Nav for 3 seconds
   const startHold = () => { timerRef.current = setTimeout(() => navigate('/admin'), 3000); };
   const endHold = () => { if (timerRef.current) clearTimeout(timerRef.current); };
 
