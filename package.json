@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview"
   },
   "dependencies": {
     "@otplib/core": "^13.2.1",
