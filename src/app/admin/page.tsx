@@ -44,7 +44,10 @@ export default function AdminPortal() {
         setIsAuth(true);
         toast.success("Login Successful!")
       } else { toast.error("Invalid OTP"); }
-    } catch (e) { toast.error("Internal Server Error"); }
+    } catch (e) { 
+      console.error(e)
+      toast.error("Internal Server Error"); 
+    }
   };
 
   const exportData = () => {
