@@ -34,11 +34,11 @@ export default function AdminPortal() {
     const cleanOtp = otp.trim();
 
     try {
-      console.log(import.meta.env.VITE_OTPLIB_SECRET, cleanOtp)
       const otpVerification = await verifyOTP({
         secret: import.meta.env.VITE_OTPLIB_SECRET,
         token: cleanOtp
       })
+      console.log(otpVerification.valid)
       if (cleanOtp.length === 6 && otpVerification.valid) {
         setIsAuth(true);
         toast.success("Login Successful!")
