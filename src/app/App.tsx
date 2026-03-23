@@ -1,21 +1,32 @@
 'use client';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from '../lib/ThemeContext';
 import { cn } from '../lib/utils';
 import TestimonialsPage from './TestimonialsPage';
 import WorkPage from './WorkPage';
+import AboutPage from './AboutPage';
+import CaseStudiesPage from './CaseStudiesPage';
+import BlogPage from './BlogPage';
+import ContactPage from './ContactPage';
 import AdminPortal from './admin/page';
-import { BeforeAfterSlider } from './components/BeforeAfterSlider';
 import { CustomCursor } from './components/CustomCursor';
-import { FooterCTA } from './components/FooterCTA';
-import { HeroSection } from './components/HeroSection';
-import { ImpactSidebar } from './components/ImpactSidebar';
-import { KardiaMethodology } from './components/KardiaMethodology';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navigation } from './components/Navigation';
-import { ProductVault } from './components/ProductVault';
+import { FAQSection } from './components/FAQSection';
+import { 
+  HeroSection, 
+  StatsSection, 
+  ServicesSection, 
+  CaseStudiesSection, 
+  TestimonialsSection, 
+  ClientsSection,
+  CTASection
+} from './components/HeroSection';
+import { Footer } from './components/Footer';
+import { GetQuoteForm } from './components/GetQuoteForm';
+import { Analytics } from './lib/analytics';
 
 function GlobalSystems() {
   const navigate = useNavigate();
@@ -63,15 +74,15 @@ function ThemeGate({ children }: { children: React.ReactNode }) {
   const { isDark } = useTheme();
   useEffect(() => {
     const root = document.documentElement;
-    isDark ? root.classList.remove('light') : root.classList.add('light');
+    root.classList.remove('light', 'dark');
+    root.classList.add(isDark ? 'dark' : 'light');
+    document.body.style.backgroundColor = isDark ? '#0a0a0a' : '#ffffff';
   }, [isDark]);
-  return <div className={cn(isDark ? "dark" : "light")}>{children}</div>;
+  return <div>{children}</div>;
 }
 
-function MainLayout({ children }: { children?: React.ReactNode }) {
+function MainLayout() {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<any[]>([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const startHold = () => { timerRef.current = setTimeout(() => navigate('/admin'), 3000); };
@@ -80,23 +91,20 @@ function MainLayout({ children }: { children?: React.ReactNode }) {
   return (
     <div className="min-h-screen">
       <div onMouseDown={startHold} onMouseUp={endHold} onTouchStart={startHold} onTouchEnd={endHold}>
-        <Navigation cartCount={cart.length} openSidebar={() => setIsSidebarOpen(true)} />
+        <Navigation />
       </div>
       <main>
-        {children || (
-          <>
-            <HeroSection />
-            <KardiaMethodology />
-            <ProductVault
-              onAdd={(item) => { if (!cart.find(i => i.id === item.id)) { setCart([...cart, item]); setIsSidebarOpen(true); } }}
-              selectedIds={cart.map(i => i.id)}
-            />
-            <BeforeAfterSlider />
-          </>
-        )}
+        <HeroSection />
+        <StatsSection />
+        <ServicesSection />
+        <CaseStudiesSection />
+        <TestimonialsSection />
+        <ClientsSection />
+        <CTASection />
+        <GetQuoteForm />
+        <FAQSection />
+        <Footer />
       </main>
-      <FooterCTA />
-      <ImpactSidebar isOpen={isSidebarOpen} items={cart} onRemove={(id) => setCart(cart.filter(i => i.id !== id))} onClose={() => setIsSidebarOpen(false)} />
     </div>
   );
 }
@@ -105,24 +113,25 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   return (
     <ThemeProvider>
+      <Analytics />
       <ThemeGate>
         <CustomCursor />
         <Router>
           <GlobalSystems />
-          <AnimatePresence mode="wait">
-            {loading ? (
-              <LoadingScreen key="loader" onComplete={() => setLoading(false)} />
-            ) : (
-              <Routes>
-                <Route path="/" element={<MainLayout />} />
-                <Route path="/work" element={<MainLayout><WorkPage /></MainLayout>} />
-                <Route path="/testimonials" element={<MainLayout><TestimonialsPage /></MainLayout>} />
-              </Routes>
-            )}
+          {loading ? (
+            <LoadingScreen onComplete={() => setLoading(false)} />
+          ) : (
             <Routes>
-              <Route path="/admin" element={<AdminPortal />} hydrateFallbackElement={< LoadingScreen key="loader" onComplete={() => setLoading(false)} />} />
+              <Route path="/" element={<MainLayout />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/case-studies" element={<CaseStudiesPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/testimonials" element={<TestimonialsPage />} />
+              <Route path="/admin" element={<AdminPortal />} />
             </Routes>
-          </AnimatePresence>
+          )}
         </Router>
       </ThemeGate>
     </ThemeProvider>
