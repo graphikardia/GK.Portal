@@ -17,10 +17,10 @@ const COLORS = {
 };
 
 const stats = [
-  { num: '150+', label: 'Projects Completed', icon: Target },
-  { num: '40M+', label: 'Impressions Generated', icon: TrendingUp },
+  { num: '50+', label: 'Projects Delivered', icon: Target },
+  { num: '30M+', label: 'Impressions Generated', icon: TrendingUp },
   { num: '5x', label: 'Average ROI', icon: Zap },
-  { num: '95%', label: 'Client Retention', icon: Users },
+  { num: '95%', label: 'Client Satisfaction', icon: Users },
 ];
 
 const services = [
