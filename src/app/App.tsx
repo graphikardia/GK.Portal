@@ -11,6 +11,7 @@ import CaseStudiesPage from './CaseStudiesPage';
 import BlogPage from './BlogPage';
 import ContactPage from './ContactPage';
 import AdminPortal from './admin/page';
+import CinematicDemo from './CinematicDemo';
 import { CustomCursor } from './components/CustomCursor';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navigation } from './components/Navigation';
@@ -94,7 +95,7 @@ function MainLayout() {
         <Navigation />
       </div>
       <main>
-        <HeroSection />
+        <CinematicDemo />
         <StatsSection />
         <ServicesSection />
         <CaseStudiesSection />
@@ -130,6 +131,7 @@ export default function App() {
               <Route path="/work" element={<WorkPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />
               <Route path="/admin" element={<AdminPortal />} />
+              <Route path="/cinematic" element={<CinematicDemo />} />
             </Routes>
           )}
         </Router>
