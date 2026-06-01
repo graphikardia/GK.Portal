@@ -114,7 +114,7 @@ export default function App() {
       <Analytics />
       <ThemeSync />
       <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black transition-colors duration-500">
-        <CustomCursor color="white" />
+        <CustomCursor />
         <Router>
           <ScrollToTop />
           <GlobalSystems />

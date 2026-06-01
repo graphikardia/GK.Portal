@@ -1,137 +1,119 @@
 'use client';
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Layout, Zap, Cpu, Shield, Globe, ArrowRight, MousePointer2, Code2 } from 'lucide-react';
+import { Cpu, Layout, Zap, ShieldCheck, Globe, ArrowRight, Code, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function WebsitePage() {
-  const valueProps = [
-    {
-      icon: <Zap className="text-gk-accent" />,
-      title: "Velocity Architecture",
-      desc: "Instantaneous load times and mobile-first responsiveness for maximum conversion rate optimization (CRO)."
-    },
-    {
-      icon: <Cpu className="text-gk-accent" />,
-      title: "Hardened Infrastructure",
-      desc: "Robust, secure digital foundations tailored for healthcare compliance and enterprise-grade reliability."
-    },
-    {
-      icon: <MousePointer2 className="text-gk-accent" />,
-      title: "Conversion Dynamics",
-      desc: "Strategic UI/UX design paths that frictionlessly guide users from curiosity to confirmed acquisition."
-    }
+  const features = [
+    { icon: <Zap className="text-gk-accent" />, title: "Load Velocity", desc: "Hardened infrastructure delivering sub-0.5s response times for maximum retention." },
+    { icon: <ShieldCheck className="text-gk-accent" />, title: "Authority Design", desc: "Aesthetic narratives that earn user trust and command high-ticket conversions." },
+    { icon: <Layers className="text-gk-accent" />, title: "Full Stack Sync", desc: "Deep integration with CRM and automation nodes for a seamless acquisition loop." },
   ];
 
   return (
-    <div className="min-h-screen bg-gk-bg text-gk-text1 service-hero-bg">
+    <div className="min-h-screen bg-gk-bg text-gk-text1">
       {/* HERO */}
-      <section className="pt-52 pb-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-20 items-center mb-32">
-            <div className="flex-1">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-10 h-px bg-gk-accent" />
-                <span className="section-label">Service_Node:03</span>
+      <section className="pt-52 pb-32 px-6 bg-gradient-to-b from-gk-secondary/50 to-gk-bg overflow-hidden border-b border-white/5">
+        <div className="container-custom">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div>
+                 <div className="flex items-center gap-4 mb-8">
+                   <div className="w-10 h-px bg-gk-accent" />
+                   <span className="section-label">Digital Systems</span>
+                 </div>
+                 <h1 className="text-5xl md:text-8xl font-bold mb-10 leading-[1.05]">
+                   High-Performance <span className="gradient-gold">Infrastructure.</span>
+                 </h1>
+                 <p className="text-gk-text2 text-xl leading-relaxed max-w-xl mb-12 font-body">
+                   We architect hardened digital systems designed for high-ticket acquisition. Speed, trust, and conversion density are our core metrics.
+                 </p>
+                 <Link to="/contact" className="inline-flex py-5 px-12 bg-gk-accent text-black font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">
+                   Request System Audit
+                 </Link>
               </div>
-              <h1 className="text-6xl md:text-[100px] leading-[0.9] font-black mb-12">
-                DIGITAL <span className="gradient-gold">PORTAL</span><br />
-                ARCHITECTURE
-              </h1>
-              <p className="text-gk-text2 text-xl md:text-2xl uppercase tracking-widest leading-relaxed max-w-2xl mb-12">
-                We don't build websites; we architect conversion engines. 
-                Deploying high-performance digital infrastructure for global elites.
-              </p>
-              <Link to="/contact" className="inline-flex py-5 px-12 bg-gk-accent text-black font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent-hover transition-colors">
-                Initialize_Build_Scan
-              </Link>
-            </div>
-            <div className="hidden lg:block w-1/3 p-8 glass-card">
-               <div className="space-y-12">
-                  <div className="flex justify-between items-center px-4">
-                    <span className="text-[10px] font-mono text-gk-text3 uppercase uppercase font-bold tracking-widest">Performance_Check</span>
-                    <div className="w-3 h-3 bg-gk-success rounded-full bg-green-500 animate-pulse" />
-                  </div>
-                  <div className="p-8 border border-gk-border bg-gk-bg/50">
-                    <div className="flex items-end justify-between mb-2">
-                       <span className="text-[9px] font-mono text-gk-text3 uppercase">Load_Velocity</span>
-                       <span className="text-xl font-bold text-gk-accent">99/100</span>
+              <div className="relative">
+                 <div className="p-3 bg-gk-elevated border border-gk-border group aspect-video">
+                    <img 
+                       src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
+                       alt="Development Infrastructure" 
+                       className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
+                    />
+                    <div className="absolute inset-0 bg-gk-accent/5 opacity-50" />
+                 </div>
+                 {/* FLOATING PERFORMANCE METER */}
+                 <div className="absolute -bottom-10 -left-10 p-10 glass-card border border-gk-accent/20 max-w-xs">
+                    <div className="flex justify-between items-end mb-4">
+                       <span className="text-[10px] font-mono text-gk-accent uppercase tracking-widest">Velocity_Score</span>
+                       <span className="text-3xl font-bold italic">100</span>
                     </div>
-                    <div className="h-1 bg-gk-border overflow-hidden">
-                       <motion.div 
-                         initial={{ width: 0 }}
-                         whileInView={{ width: "99%" }}
-                         transition={{ duration: 1.5, delay: 0.5 }}
-                         className="h-full bg-gk-accent shadow-[0_0_10px_#C9A84C]" 
-                       />
+                    <div className="w-full h-1 bg-white/10">
+                       <div className="w-full h-full bg-gk-accent" />
                     </div>
-                  </div>
-                  <div className="p-8 border border-gk-border bg-gk-bg/50">
-                    <div className="flex items-end justify-between mb-2">
-                       <span className="text-[9px] font-mono text-gk-text3 uppercase">Conversion_Edge</span>
-                       <span className="text-xl font-bold text-gk-accent">Top_1%</span>
-                    </div>
-                    <div className="h-1 bg-gk-border overflow-hidden">
-                       <motion.div 
-                         initial={{ width: 0 }}
-                         whileInView={{ width: "95%" }}
-                         transition={{ duration: 1.5, delay: 0.7 }}
-                         className="h-full bg-gk-accent shadow-[0_0_10px_#C9A84C]" 
-                       />
-                    </div>
-                  </div>
-               </div>
-            </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* CORE FEATURES */}
+      <section className="py-40 px-6">
+        <div className="container-custom">
+          <div className="mb-24 text-center max-w-3xl mx-auto">
+             <h2 className="text-3xl md:text-5xl font-bold mb-8 italic">Engineered for Dominance</h2>
+             <p className="text-gk-text2 text-lg">We don't build generic websites. We deploy strategic digital assets that serve as your 24/7 high-ticket closer.</p>
           </div>
 
-          {/* VALUE PROPS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
-            {valueProps.map((prop, i) => (
-              <div key={i} className="p-10 card-hover bg-gk-secondary group">
-                <div className="mb-8 p-4 w-fit border border-gk-border group-hover:border-gk-accent transition-colors">
-                  {prop.icon}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {features.map((f, i) => (
+              <div key={i} className="p-12 glass-card hover:border-gk-accent/30 transition-all group">
+                <div className="mb-8 w-14 h-14 border border-gk-border flex items-center justify-center text-white group-hover:text-gk-accent transition-colors">
+                   {f.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{prop.title}</h3>
-                <p className="text-gk-text2 text-sm leading-relaxed uppercase tracking-wider group-hover:text-gk-text1 transition-colors">
-                  {prop.desc}
-                </p>
+                <h3 className="text-2xl font-bold mb-4">{f.title}</h3>
+                <p className="text-gk-text2 text-sm leading-relaxed uppercase tracking-wide group-hover:text-white transition-colors">{f.desc}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* PROCESS TIMELINE */}
-          <div className="mb-40 py-24 border-y border-gk-border relative overflow-hidden">
-             <div className="absolute top-0 left-0 p-12 opacity-[0.02] -rotate-12">
-                <Code2 size={400} />
+      {/* TECH STACK */}
+      <section className="py-40 px-6 bg-gk-secondary/20 border-y border-gk-border">
+         <div className="container-custom">
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div className="space-y-10">
+                   <h2 className="text-4xl font-bold italic">The <span className="gradient-gold">Hardened</span> Stack</h2>
+                   <p className="text-gk-text2 text-lg leading-relaxed font-body">Our systems are powered by modern, reliable, and scalable technology nodes that ensure zero downtime and maximum security.</p>
+                   <div className="grid grid-cols-2 gap-6">
+                      {['Next.js / Vite', 'PostgreSQL', 'Tailwind CSS', 'Vercel Edge'].map(tech => (
+                        <div key={tech} className="p-6 border border-gk-border flex items-center justify-between group hover:border-gk-accent transition-colors">
+                           <span className="text-[10px] font-mono font-bold uppercase tracking-widest">{tech}</span>
+                           <ShieldCheck size={14} className="text-gk-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                      ))}
+                   </div>
+                </div>
+                <div className="relative aspect-square">
+                   <div className="absolute inset-0 bg-gk-accent/5 blur-[100px] rounded-full" />
+                   <Code size={400} className="text-white opacity-[0.03] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                   <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                         <span className="text-[10px] font-mono text-gk-text3 uppercase mb-4 block tracking-[0.4em]">system_active</span>
+                         <div className="w-20 h-px bg-gk-accent mx-auto" />
+                      </div>
+                   </div>
+                </div>
              </div>
-             <div className="text-center mb-24 px-6 relative z-10">
-                <span className="section-label mb-4 block">Deployment_Timeline</span>
-                <h2 className="text-4xl md:text-6xl font-black uppercase italic">THE_BUILD_PROTOCOL</h2>
-             </div>
-             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 px-6">
-                {[
-                  { id: "01", title: "NODE_MAPPING", desc: "User journey and architectural wireframing." },
-                  { id: "02", title: "TACTICAL_DESIGN", desc: "High-fidelity UI/UX alignment." },
-                  { id: "03", title: "HARDENING", desc: "Front-end engineering & back-end security." },
-                  { id: "04", title: "DEPLOYMENT", desc: "Global CDN propagation & optimization." }
-                ].map((s, i) => (
-                  <div key={i} className="p-8 border border-gk-border/30 hover:border-gk-accent transition-all group">
-                     <span className="text-2xl font-display font-black text-gk-accent/20 group-hover:text-gk-accent transition-colors block mb-4">{s.id}</span>
-                     <h4 className="text-sm font-bold mb-2 uppercase">{s.title}</h4>
-                     <p className="text-[10px] font-mono text-gk-text3 uppercase leading-relaxed tracking-widest">{s.desc}</p>
-                  </div>
-                ))}
-             </div>
-          </div>
+         </div>
+      </section>
 
-          {/* FINAL CTA */}
-          <div className="text-center border border-gk-border p-20 relative group overflow-hidden">
-             <div className="absolute inset-0 bg-gk-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-             <h2 className="text-3xl md:text-6xl mb-12 leading-tight uppercase">UPGRADE YOUR <span className="gradient-gold">PORTAL</span> TO ENTERPRISE VELOCITY</h2>
-             <Link to="/contact" className="inline-flex py-6 px-16 bg-gk-text1 text-gk-bg font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent transition-colors">
-                Connect with an Architect
-             </Link>
-          </div>
+      {/* CTA */}
+      <section className="py-52 px-6 text-center">
+        <div className="container-custom max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-7xl font-bold mb-12 leading-tight">Architect for <span className="gradient-gold">Growth</span> Today.</h2>
+          <Link to="/contact" className="inline-flex py-6 px-16 bg-gk-accent text-black font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">
+            Initiate System Audit
+          </Link>
         </div>
       </section>
     </div>

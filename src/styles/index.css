@@ -51,12 +51,12 @@
   }
 
   /* Typography — clean hierarchy, NO forced uppercase */
+  /* Typography — clean hierarchy, NO forced uppercase */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply text-gk-text1 tracking-tight;
     font-weight: 700;
     line-height: 1.1;
-    letter-spacing: -0.025em;
-    color: var(--gk-text1);
     margin: 0;
   }
 
@@ -105,12 +105,8 @@
 
   /* ─── LABEL STYLE ────────────────────────────────── */
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gk-accent);
+    @apply font-mono text-[9px] uppercase tracking-[0.3em] font-bold text-gk-accent;
+    opacity: 0.8;
   }
 
   /* ─── ACCENT DIVIDER ─────────────────────────────── */
@@ -137,14 +133,14 @@
 
   /* ─── CARD HOVER ─────────────────────────────────── */
   .card-hover {
-    border: 1px solid var(--gk-border);
-    border-radius: var(--radius);
-    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    @apply border border-gk-border transition-all duration-500 bg-gk-secondary/30;
   }
   .card-hover:hover {
-    border-color: var(--gk-border-a);
-    background: var(--gk-elevated);
-    transform: translateY(-2px);
+    @apply border-gk-accent/40 bg-gk-elevated -translate-y-1;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 md:px-12;
   }
 
   /* ─── SERVICE PAGE HERO ──────────────────────────── */

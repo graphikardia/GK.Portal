@@ -1,116 +1,134 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Zap, BarChart3, Target, Globe, ArrowRight, ShieldCheck, Database } from 'lucide-react';
+import { Search, Zap, BarChart3, Target, Globe, ArrowRight, ShieldCheck, Database, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function SEOPage() {
-  const valueProps = [
+  const pillars = [
     {
       icon: <Search className="text-gk-accent" />,
       title: "AEO Architecture",
-      desc: "Optimizing for AI Answer Engines (Perplexity, SearchGPT, Gemini) to ensure your brand is the primary source of truth."
+      desc: "Optimizing for AI Answer Engines (SearchGPT, Gemini) to ensure your brand remains the primary source of truth."
     },
     {
       icon: <Database className="text-gk-accent" />,
       title: "Technical Hardening",
-      desc: "Precision code optimization, schema injection, and Core Web Vitals dominance for instantaneous load velocity."
+      desc: "Precision code optimization and schema injection for instantaneous load velocity and crawl dominance."
     },
     {
       icon: <Target className="text-gk-accent" />,
-      title: "High-Intent Capture",
-      desc: "Targeting 'bottom-of-funnel' keywords that drive direct clinical inquiries and high-ticket B2B conversions."
+      title: "Intent Capture",
+      desc: "Targeting high-value keywords that drive direct clinical inquiries and enterprise-level B2B conversions."
     }
   ];
 
-  const process = [
-    { step: "01", title: "DEEP_SCAN", desc: "Analyzing current crawl depth, authority nodes, and competitor positioning." },
-    { step: "02", title: "NODE_STRENGTHENING", desc: "Deploying cluster-based content architecture and siloing structures." },
-    { step: "03", title: "AEO_INJECTION", desc: "Hardening entity relationships for AI knowledge graphs." },
-    { step: "04", title: "VELOCITY_LOOP", desc: "Continuous rank tracking and multi-node optimization cycles." }
-  ];
-
   return (
-    <div className="min-h-screen bg-gk-bg text-gk-text1 service-hero-bg">
+    <div className="min-h-screen bg-gk-bg text-gk-text1">
       {/* HERO */}
-      <section className="pt-52 pb-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-20 items-center mb-32">
-            <div className="flex-1">
+      <section className="pt-52 pb-32 px-6 bg-gradient-to-b from-gk-secondary/50 to-gk-bg overflow-hidden border-b border-white/5">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-10 h-px bg-gk-accent" />
-                <span className="section-label">Service_Node:01</span>
+                <span className="section-label">Core Strategy</span>
               </div>
-              <h1 className="text-6xl md:text-[100px] leading-[0.9] font-black mb-12">
+              <h1 className="text-5xl md:text-8xl font-bold mb-10 leading-[1.05]">
                 SEO & <span className="gradient-gold">AEO</span><br />
-                ARCHITECTURE
+                Architecture.
               </h1>
-              <p className="text-gk-text2 text-xl md:text-2xl uppercase tracking-widest leading-relaxed max-w-2xl mb-12">
-                Dominate the transition from traditional search to AI-driven answer engines. 
-                We build organic systems that convert at scale.
+              <p className="text-gk-text2 text-xl leading-relaxed max-w-xl mb-12 font-body">
+                Dominate the transition from traditional search to AI-driven ecosystem answers. We build organic architectures that convert at scale.
               </p>
-              <Link to="/contact" className="inline-flex py-5 px-12 bg-gk-accent text-black font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent-hover transition-colors">
-                Initialize_Audit
+              <Link to="/contact" className="inline-flex py-5 px-12 bg-gk-accent text-black font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">
+                Initiate Performance Audit
               </Link>
-            </div>
-            <div className="hidden lg:block w-1/3 p-12 glass-card">
-              <div className="space-y-12">
-                <div className="flex justify-between items-center px-4">
-                  <span className="text-[10px] font-mono text-gk-text3 uppercase">System_Sync</span>
-                  <div className="w-3 h-3 bg-gk-accent rounded-full animate-pulse" />
-                </div>
-                <div className="space-y-2 border-l-2 border-gk-accent/20 pl-6">
-                  <span className="text-[40px] font-display font-black italic block">95.2%</span>
-                  <span className="text-[9px] font-mono text-gk-text3 uppercase tracking-[0.2em] font-bold">Visibility_Coefficient</span>
-                </div>
-                <div className="space-y-2 border-l-2 border-gk-accent/20 pl-6">
-                  <span className="text-[40px] font-display font-black italic block">0.8s</span>
-                  <span className="text-[9px] font-mono text-gk-text3 uppercase tracking-[0.2em] font-bold">Node_Response_Time</span>
-                </div>
-              </div>
+            </motion.div>
+
+            <div className="relative">
+               <div className="p-3 bg-gk-elevated border border-gk-border aspect-square relative group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop" 
+                    alt="Analytics Infrastructure" 
+                    className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                     <div className="p-8 glass-card border border-gk-accent/20 text-center">
+                        <BarChart3 size={40} className="text-gk-accent mx-auto mb-4" />
+                        <span className="text-4xl font-bold block mb-1">+310%</span>
+                        <span className="text-[10px] font-mono uppercase tracking-widest opacity-60">Avg_Traffic_Lift_Year_1</span>
+                     </div>
+                  </div>
+               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* VALUE PROPS GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
-            {valueProps.map((prop, i) => (
-              <div key={i} className="p-10 card-hover bg-gk-secondary group">
-                <div className="mb-8 p-4 w-fit border border-gk-border group-hover:border-gk-accent transition-colors">
-                  {prop.icon}
+      {/* STRATEGIC PILLARS */}
+      <section className="py-40 px-6">
+        <div className="container-custom">
+          <div className="mb-24 text-center max-w-3xl mx-auto">
+             <h2 className="text-3xl md:text-5xl font-bold mb-8 italic">The Cardinal Pillars of Performance</h2>
+             <p className="text-gk-text2 text-lg">We don't focus on vanity metrics. We focus on structural authority and revenue-generating intent.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {pillars.map((pillar, i) => (
+              <div key={i} className="p-12 glass-card hover:border-gk-accent/30 transition-all group">
+                <div className="mb-8 w-14 h-14 border border-gk-border flex items-center justify-center text-white group-hover:text-gk-accent transition-colors">
+                   {pillar.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{prop.title}</h3>
-                <p className="text-gk-text2 text-sm leading-relaxed uppercase tracking-wider group-hover:text-gk-text1 transition-colors">
-                  {prop.desc}
-                </p>
+                <h3 className="text-2xl font-bold mb-4">{pillar.title}</h3>
+                <p className="text-gk-text2 text-sm leading-relaxed uppercase tracking-wide group-hover:text-white transition-colors">{pillar.desc}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* INFOGRAPHIC / FLOW */}
-          <div className="mb-40 py-24 glass-card overflow-hidden">
-            <div className="text-center mb-20 px-6">
-              <span className="section-label mb-4 block">Operation_Protocol</span>
-              <h2 className="text-4xl md:text-6xl font-black italic">THE_KARDIA_SEQ</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-6 md:px-12 divide-y md:divide-y-0 md:divide-x divide-gk-border/50">
-              {process.map((p, i) => (
-                <div key={i} className="p-12 hover:bg-gk-accent/5 transition-colors">
-                  <span className="text-5xl font-display font-black gradient-gold opacity-30 block mb-8">{p.step}</span>
-                  <h4 className="text-lg font-black mb-4 group-hover:text-gk-accent transition-colors">{p.title}</h4>
-                  <p className="text-[10px] text-gk-text2 leading-loose uppercase tracking-[0.15em]">{p.desc}</p>
+      {/* FLOW INFOGRAPHIC */}
+      <section className="py-40 px-6 bg-gk-secondary/20 border-y border-gk-border">
+         <div className="container-custom">
+             <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+                <div className="lg:col-span-4">
+                   <h2 className="text-4xl font-bold mb-8">The <span className="gradient-gold">Deployment</span> Cycle</h2>
+                   <p className="text-gk-text2 text-lg leading-relaxed font-body">Our methodology is iterative, data-backed, and optimized for long-term category dominance.</p>
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="lg:col-span-8">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      {[
+                        { step: "01", title: "Global Intel", desc: "Analyzing authoritative search nodes and competitor strategy." },
+                        { step: "02", title: "Node Hardening", desc: "Content siloing and entity-relationship mapping for AI clusters." },
+                        { step: "03", title: "AEO Injection", desc: "Distilling brand knowledge into AI-actionable answer fragments." },
+                        { step: "04", title: "Rank Velocity", desc: "Continuous performance monitoring and optimization loops." }
+                      ].map((p, i) => (
+                        <div key={i} className="flex gap-6 p-8 border border-gk-border hover:bg-gk-accent/5 transition-colors group">
+                           <span className="text-3xl font-bold italic opacity-20 group-hover:opacity-100 group-hover:text-gk-accent transition-all">{p.step}</span>
+                           <div>
+                              <h4 className="text-lg font-bold mb-2">{p.title}</h4>
+                              <p className="text-xs text-gk-text3 uppercase tracking-widest">{p.desc}</p>
+                           </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+             </div>
+         </div>
+      </section>
 
-          {/* FINAL CTA */}
-          <div className="text-center border border-gk-border p-20 relative group overflow-hidden">
-             <div className="absolute inset-0 bg-gk-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-             <h2 className="text-3xl md:text-6xl mb-12 leading-tight">PRECISION GROWTH <span className="gradient-gold">PROTOCOL</span>_READY_FOR_DEPLOYMENT</h2>
-             <Link to="/contact" className="inline-flex py-6 px-16 bg-gk-text1 text-gk-bg font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent transition-colors">
-                Connect with an Architect
-             </Link>
-          </div>
+      {/* FINAL CTA */}
+      <section className="py-52 px-6 text-center">
+        <div className="container-custom max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-7xl font-bold mb-12 leading-tight">Secure Your Authority <span className="gradient-gold">Today.</span></h2>
+          <Link to="/contact" className="inline-flex py-6 px-16 bg-gk-accent text-black font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">
+            Initiate Performance Audit
+          </Link>
         </div>
       </section>
     </div>
