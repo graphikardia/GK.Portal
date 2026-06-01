@@ -34,21 +34,21 @@ const INJECTED_STYLES = `
   
   /* OUTSIDE THE CARD: Theme-aware text (Shadow in Light Mode, Glow in Dark Mode) */
   .text-3d-matte {
-      color: var(--color-foreground);
+      color: #0a0a0a;
       text-shadow: 
-          0 10px 30px color-mix(in srgb, var(--color-foreground) 20%, transparent), 
-          0 2px 4px color-mix(in srgb, var(--color-foreground) 10%, transparent);
+          0 10px 30px rgba(0, 0, 0, 0.3), 
+          0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .text-silver-matte {
-      background: linear-gradient(180deg, var(--color-foreground) 0%, color-mix(in srgb, var(--color-foreground) 40%, transparent) 100%);
+      background: linear-gradient(180deg, #DC143C 0%, #8B0A1C 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      transform: translateZ(0); /* Hardware acceleration to prevent WebKit clipping bug */
+      transform: translateZ(0);
       filter: 
-          drop-shadow(0px 10px 20px color-mix(in srgb, var(--color-foreground) 15%, transparent)) 
-          drop-shadow(0px 2px 4px color-mix(in srgb, var(--color-foreground) 10%, transparent));
+          drop-shadow(0px 10px 20px rgba(220, 20, 60, 0.3)) 
+          drop-shadow(0px 2px 4px rgba(220, 20, 60, 0.2));
   }
 
   /* INSIDE THE CARD: Hardcoded Silver/White for the dark background, deep rich shadows */
@@ -318,17 +318,17 @@ export function CinematicHero({
 
       {/* BACKGROUND LAYER: Hero Texts */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">
-        <h1 className="text-track gsap-reveal text-3d-matte text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-2">
+        <h1 className="text-track gsap-reveal text-[#0a0a0a] text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-2" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
           {tagline1}
         </h1>
-        <h1 className="text-days gsap-reveal text-silver-matte text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter">
+        <h1 className="text-days gsap-reveal text-[#DC143C] text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter" style={{ textShadow: '0 10px 30px rgba(220,20,60,0.4)' }}>
           {tagline2}
         </h1>
       </div>
 
       {/* BACKGROUND LAYER 2: Tactile CTA Buttons */}
       <div className="cta-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 gsap-reveal pointer-events-auto will-change-transform">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-silver-matte">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-[#DC143C]">
           {ctaHeading}
         </h2>
         <p className="text-[#0a0a0a]/60 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light leading-relaxed">

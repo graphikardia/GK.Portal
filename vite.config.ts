@@ -25,6 +25,7 @@ export default defineConfig({
             "react-dom",
             "react-router-dom",
             "framer-motion",
+            "three"
           ],
           ui: [
             "@radix-ui/react-accordion",

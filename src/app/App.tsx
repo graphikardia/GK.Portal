@@ -1,32 +1,23 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from '../lib/ThemeContext';
-import { cn } from '../lib/utils';
-import TestimonialsPage from './TestimonialsPage';
-import WorkPage from './WorkPage';
+
+// NEW TECH-NOIR COMPONENTS
+import { CinematicHero } from './components/CinematicHero';
+import { BentoGrid } from './components/BentoGrid';
+import { MedicalHub } from './components/MedicalHub';
+import { ProofSection } from './components/ProofSection';
+import { CustomCursor } from './components/CustomCursor';
+import { LoadingScreen } from './components/LoadingScreen';
+import { Footer } from './components/Footer';
+import AdminPortal from './admin/page';
 import AboutPage from './AboutPage';
 import CaseStudiesPage from './CaseStudiesPage';
 import BlogPage from './BlogPage';
 import ContactPage from './ContactPage';
-import AdminPortal from './admin/page';
-import CinematicDemo from './CinematicDemo';
-import { CustomCursor } from './components/CustomCursor';
-import { LoadingScreen } from './components/LoadingScreen';
-import { Navigation } from './components/Navigation';
-import { FAQSection } from './components/FAQSection';
-import { 
-  HeroSection, 
-  StatsSection, 
-  ServicesSection, 
-  CaseStudiesSection, 
-  TestimonialsSection, 
-  ClientsSection,
-  CTASection
-} from './components/HeroSection';
-import { Footer } from './components/Footer';
-import { GetQuoteForm } from './components/GetQuoteForm';
+import WorkPage from './WorkPage';
+import TestimonialsPage from './TestimonialsPage';
 import { Analytics } from './lib/analytics';
 
 function GlobalSystems() {
@@ -60,7 +51,7 @@ function GlobalSystems() {
           const updatedLogs = [log, ...(db.surveillance || [])].slice(0, 50);
           localStorage.setItem('gk_terminal_db', JSON.stringify({ ...db, surveillance: updatedLogs }));
         }
-      } catch (e) { console.error("TRACE_FAILED"); }
+      } catch (e) { /* silent fail */ }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -73,50 +64,42 @@ function GlobalSystems() {
 
 function ThemeGate({ children }: { children: React.ReactNode }) {
   const { isDark } = useTheme();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(isDark ? 'dark' : 'light');
-    document.body.style.backgroundColor = isDark ? '#0a0a0a' : '#ffffff';
+    document.body.style.backgroundColor = isDark ? '#000000' : '#F8F9FA';
   }, [isDark]);
-  return <div>{children}</div>;
+  
+  return <div className="min-h-screen bg-background text-foreground transition-colors duration-500">{children}</div>;
 }
 
 function MainLayout() {
-  const navigate = useNavigate();
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startHold = () => { timerRef.current = setTimeout(() => navigate('/admin'), 3000); };
-  const endHold = () => { if (timerRef.current) clearTimeout(timerRef.current); };
-
   return (
-    <div className="min-h-screen">
-      <div onMouseDown={startHold} onMouseUp={endHold} onTouchStart={startHold} onTouchEnd={endHold}>
-        <Navigation />
-      </div>
-      <main>
-        <CinematicDemo />
-        <StatsSection />
-        <ServicesSection />
-        <CaseStudiesSection />
-        <TestimonialsSection />
-        <ClientsSection />
-        <CTASection />
-        <GetQuoteForm />
-        <FAQSection />
-        <Footer />
-      </main>
-    </div>
+    <main className="relative">
+      <CinematicHero />
+      <BentoGrid />
+      <MedicalHub />
+      <ProofSection />
+      <Footer />
+    </main>
   );
 }
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  
   return (
     <ThemeProvider>
       <Analytics />
       <ThemeGate>
-        <CustomCursor />
+        <CustomCursor color="white" />
         <Router>
           <GlobalSystems />
           {loading ? (
@@ -131,7 +114,7 @@ export default function App() {
               <Route path="/work" element={<WorkPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />
               <Route path="/admin" element={<AdminPortal />} />
-              <Route path="/cinematic" element={<CinematicDemo />} />
+              <Route path="*" element={<MainLayout />} />
             </Routes>
           )}
         </Router>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 import { useTheme } from '../../lib/ThemeContext';
 
-export function CustomCursor() {
+export function CustomCursor({ color }: { color?: string }) {
   const { isDark } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -38,7 +38,8 @@ export function CustomCursor() {
 
   if (!isVisible) return null;
 
-  const cursorColor = isDark ? '#ffffff' : '#000000';
+  const defaultColor = isDark ? '#ffffff' : '#000000';
+  const cursorColor = color || defaultColor;
 
   return (
     <div 

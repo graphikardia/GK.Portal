@@ -8,41 +8,39 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        body: ["var(--font-body)", "sans-serif"],
-        interface: ["var(--font-interface)", "monospace"],
-        cursive: ["Playwrite NZ", "cursive"],
+        display: ["Montserrat", "sans-serif"],
+        body: ["Outfit", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       letterSpacing: {
         tighter: "-0.05em",
-        tightest: "-0.07em",
-        widest: "0.5em",
+        tightest: "-0.09em",
+        widest: "1em",
       },
       colors: {
-        crimson: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
-          900: '#7f1d1d',
-          950: '#450a0a',
-        }
+        noir: {
+          50: '#F8F9FA',
+          100: '#E0E0E0',
+          200: '#B0B0B0',
+          300: '#707070',
+          400: '#404040',
+          500: '#222222',
+          600: '#1A1A1A',
+          700: '#0F0F0F',
+          800: '#0A0A0A',
+          900: '#000000',
+        },
+        silver: '#E0E0E0',
+        obsidian: '#0A0A0A',
       },
       animation: {
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-slow': 'bounce 2s infinite',
-        'spin-slow': 'spin 8s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         }
       }
     },

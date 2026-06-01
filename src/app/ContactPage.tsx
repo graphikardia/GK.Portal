@@ -1,278 +1,117 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, MapPin, Send, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../lib/ThemeContext';
-import { cn } from '../lib/utils';
-import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 
 const contactInfo = {
   email: "graphikardia@gmail.com",
   phone: "+91 7975594203",
-  location: "Bangalore, Karnataka, India",
-  availability: "Mon - Sat: 9:00 AM - 7:00 PM"
+  location: "BANGALORE_IN",
+  availability: "0900_1900_IST"
 };
 
 const services = [
-  "Digital Marketing",
-  "Creative Advertising",
-  "Email Marketing",
-  "Website Development",
-  "Ecommerce Website",
-  "Wordpress Website",
-  "Magento Website",
-  "Website Maintenance Service",
-  "SEO Overview",
-  "Ecommerce SEO",
-  "SEO Audit Services",
-  "AI SEO",
-  "Generative Engine Optimisation",
-  "Local SEO",
-  "Link Building",
-  "Conversion Rate Optimization",
-  "Social Media Marketing",
-  "Facebook Marketing",
-  "Linkedin Marketing",
-  "Youtube Marketing",
-  "Website Design",
-  "AI Chatbots"
-];
-
-const faqs = [
-  {
-    q: "How long does a typical project take?",
-    a: "Project timelines vary based on scope. A typical website takes 2-4 weeks, while comprehensive digital campaigns run 1-3 months."
-  },
-  {
-    q: "Do you offer retainer packages?",
-    a: "Yes! We offer monthly retainer packages for ongoing digital marketing, social media management, and maintenance services."
-  },
-  {
-    q: "What industries do you work with?",
-    a: "We've worked with healthcare, education, e-commerce, real estate, and service-based businesses across India."
-  },
-  {
-    q: "How do you measure success?",
-    a: "We track KPIs like reach, engagement, conversions, ROI, and search rankings. Monthly reports keep you updated."
-  }
+  "ACQUISITION_ENGINE",
+  "DIGITAL_INFRASTRUCTURE",
+  "AI_CONTENT_CORE",
+  "MEDICAL_AUTHORITY_HUB",
+  "STRATEGIC_DEEP_SCAN"
 ];
 
 export default function ContactPage() {
   const { isDark } = useTheme();
 
   return (
-    <div className="min-h-screen" onMouseDown={() => {}} onMouseUp={() => {}}>
-      <Navigation cartCount={0} openSidebar={() => {}} />
-      
-      <section className={cn(
-        "pt-32 pb-20 px-6 min-h-screen",
-        isDark ? "bg-[#050505]" : "bg-white"
-      )}>
-        <div className="max-w-[1800px] mx-auto">
-          {/* Header */}
-          <div className="mb-20">
-            <Link to="/" className="text-xs font-mono uppercase tracking-widest opacity-50 hover:opacity-100 flex items-center gap-2 mb-8">
-              <ArrowUpRight className="rotate-180" size={14} /> Back to Hub
-            </Link>
-            <h1 className="text-[8vw] md:text-[5vw] leading-[0.9] font-black uppercase italic tracking-tighter">
-              Contact<span className="text-purple-500">.</span>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-500 font-body">
+      {/* HEADER NAV */}
+      <nav className="fixed top-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference">
+        <Link to="/" className="flex items-center gap-4">
+          <img src="/branding/logo_symbol.png" alt="GK" className="h-8 logo-filter" />
+          <span className="font-display font-black text-xl tracking-tightest">GRAPHIKARDIA</span>
+        </Link>
+        <Link to="/" className="text-[10px] font-black uppercase tracking-widest hover:opacity-50 transition-opacity">Back_to_Node</Link>
+      </nav>
+
+      <section className="pt-52 pb-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* HEADER */}
+          <div className="mb-24">
+            <h1 className="text-6xl md:text-[140px] leading-[0.8] mb-12">
+              ESTABLISH_<br />
+              <span className="text-stroke-white text-transparent opacity-80">CONNECTION</span>
             </h1>
-            <p className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-30 mt-4">Get In Touch</p>
+            <p className="font-body text-xl md:text-2xl text-muted-foreground uppercase tracking-widest max-w-2xl leading-relaxed">
+              ENCRYPTED_HANDSHAKE_REQUIRED. OUR_SYSTEM_OPERATES_ON_A_CAPACITY_FILTER_BASIS.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left - Contact Info */}
-            <div>
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="space-y-8 mb-12"
-              >
-                <div className={cn(
-                  "p-8 rounded-2xl",
-                  isDark ? "bg-zinc-900/50 border border-white/10" : "bg-zinc-50"
-                )}>
-                  <h3 className="text-2xl font-black uppercase italic mb-6">Let's Talk</h3>
-                  <p className="text-lg opacity-70 mb-8">Have a project in mind? We'd love to hear about it. Reach out and let's create something amazing together.</p>
-                  
-                  <div className="space-y-4">
-                    <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4 group">
-                      <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                        <Mail size={20} className="text-purple-500 group-hover:text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-mono uppercase tracking-wider opacity-50">Email</div>
-                        <div className="font-bold">{contactInfo.email}</div>
-                      </div>
-                    </a>
-                    
-                    <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-4 group">
-                      <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                        <Phone size={20} className="text-purple-500 group-hover:text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-mono uppercase tracking-wider opacity-50">Phone</div>
-                        <div className="font-bold">{contactInfo.phone}</div>
-                      </div>
-                    </a>
-                    
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                        <MapPin size={20} className="text-purple-500" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-mono uppercase tracking-wider opacity-50">Location</div>
-                        <div className="font-bold">{contactInfo.location}</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                        <Clock size={20} className="text-purple-500" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-mono uppercase tracking-wider opacity-50">Availability</div>
-                        <div className="font-bold">{contactInfo.availability}</div>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            {/* LEFT - INTEL */}
+            <div className="lg:col-span-5 space-y-12">
+              <div className="p-10 border border-foreground/5 bg-noir-800/10">
+                <h3 className="text-xl font-black uppercase mb-8">NODE_INFORMATION</h3>
+                <div className="space-y-8 uppercase text-[10px] font-black tracking-widest">
+                  <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-6 group">
+                    <Mail size={16} className="text-foreground group-hover:opacity-50 transtion-opacity" />
+                    <span>{contactInfo.email}</span>
+                  </a>
+                  <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-6 group">
+                    <Phone size={16} className="text-foreground group-hover:opacity-50 transtion-opacity" />
+                    <span>{contactInfo.phone}</span>
+                  </a>
+                  <div className="flex items-center gap-6">
+                    <MapPin size={16} className="text-foreground" />
+                    <span>{contactInfo.location}</span>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <ShieldCheck size={16} className="text-foreground" />
+                    <span>UPTIME:_{contactInfo.availability}</span>
                   </div>
                 </div>
-              </motion.div>
-
-              {/* FAQ Preview */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-              >
-                <h3 className="text-xl font-black uppercase italic mb-6">Quick Answers</h3>
-                <div className="space-y-4">
-                  {faqs.map((faq, i) => (
-                    <div key={i} className={cn(
-                      "p-6 rounded-xl",
-                      isDark ? "bg-zinc-900/30" : "bg-zinc-50"
-                    )}>
-                      <h4 className="font-bold mb-2">{faq.q}</h4>
-                      <p className="text-sm opacity-60">{faq.a}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Right - Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-            >
-              <div className={cn(
-                "p-8 md:p-12 rounded-3xl",
-                isDark ? "bg-zinc-900/50 border border-white/10" : "bg-zinc-50"
-              )}>
-                <h3 className="text-2xl font-black uppercase italic mb-8">Send a Message</h3>
-                
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Name *</label>
-                      <input 
-                        type="text" 
-                        required
-                        className={cn(
-                          "w-full px-4 py-4 rounded-xl outline-none text-sm",
-                          isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                        )}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Company</label>
-                      <input 
-                        type="text" 
-                        className={cn(
-                          "w-full px-4 py-4 rounded-xl outline-none text-sm",
-                          isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                        )}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Email *</label>
-                    <input 
-                      type="email" 
-                      required
-                      className={cn(
-                        "w-full px-4 py-4 rounded-xl outline-none text-sm",
-                        isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                      )}
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Phone</label>
-                    <input 
-                      type="tel" 
-                      className={cn(
-                        "w-full px-4 py-4 rounded-xl outline-none text-sm",
-                        isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                      )}
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Service Interested In *</label>
-                    <select 
-                      required
-                      className={cn(
-                        "w-full px-4 py-4 rounded-xl outline-none text-sm",
-                        isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                      )}
-                    >
-                      {services.map((s, i) => (
-                        <option key={i} value={s}>{s}</option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2 block">Message *</label>
-                    <textarea 
-                      rows={5}
-                      required
-                      className={cn(
-                        "w-full px-4 py-4 rounded-xl outline-none text-sm resize-none",
-                        isDark ? "bg-black/50 border border-white/10 focus:border-purple-500" : "bg-white border border-black/10 focus:border-purple-500"
-                      )}
-                    />
-                  </div>
-                  
-                  <button 
-                    type="submit"
-                    className="w-full py-5 bg-purple-500 text-white font-bold uppercase tracking-widest rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-3"
-                  >
-                    <Send size={18} /> Send Message
-                  </button>
-                </form>
               </div>
-            </motion.div>
-          </div>
 
-          {/* Map placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className={cn(
-              "mt-16 h-80 rounded-3xl flex items-center justify-center",
-              isDark ? "bg-zinc-900/30 border border-white/5" : "bg-zinc-100"
-            )}
-          >
-            <div className="text-center">
-              <MapPin size={48} className="mx-auto mb-4 text-purple-500 opacity-50" />
-              <p className="font-mono text-sm opacity-60">{contactInfo.location}</p>
+              <div className="p-10 border border-foreground/5 bg-noir-800/10">
+                <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-8">SECURE_TRANSMISSION</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground uppercase opacity-60">
+                  Submissions are reviewed by our architects within 24 hours. High-ticket inquiries prioritized.
+                </p>
+              </div>
             </div>
-          </motion.div>
+
+            {/* RIGHT - TRANSMITTER */}
+            <div className="lg:col-span-7">
+              <form className="space-y-8 bg-noir-800/5 p-12 border border-foreground/5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Identity_Full_Name</label>
+                    <input type="text" placeholder="ENTER_NAME" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Email_Address</label>
+                    <input type="email" placeholder="ENTER_EMAIL" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Service_Node_Required</label>
+                  <select className="w-full bg-transparent border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground appearance-none font-mono text-xs uppercase">
+                    {services.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Message_Payload</label>
+                  <textarea rows={6} placeholder="DESCRIBE_YOUR_ARCHITECTURE_DYNAMICS" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase resize-none"></textarea>
+                </div>
+
+                <button type="submit" className="w-full py-6 bg-foreground text-background font-black uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-4">
+                  <Send size={16} /> EXECUTE_TRANSMISSION
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
