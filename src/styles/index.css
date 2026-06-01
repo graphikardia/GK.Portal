@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* GRAPHIKARDIA DESIGN SYSTEM v2.0 — Premium Dark + Gold */
+    /* DEFAULT (DARK MODE) */
     --gk-bg:           #070709;
     --gk-secondary:    #0E0E12;
     --gk-elevated:     #16161C;
@@ -17,7 +17,7 @@
     --gk-border:       #1F1F26;
     --gk-border-a:     rgba(201, 168, 76, 0.25);
 
-    /* Compatibility aliases for legacy code */
+    /* Compatibility aliases */
     --background:       var(--gk-bg);
     --foreground:       var(--gk-text1);
     --card:             var(--gk-secondary);
@@ -28,6 +28,22 @@
     --font-body:        'Inter', sans-serif;
     --font-display:     'Plus Jakarta Sans', sans-serif;
   }
+
+  .light {
+    /* LIGHT MODE */
+    --gk-bg:           #FFFFFF;
+    --gk-secondary:    #F8F9FA;
+    --gk-elevated:     #F1F3F5;
+    --gk-accent:       #A48227; /* Darker gold for better contrast */
+    --gk-accent-hover: #B79435;
+    --gk-accent-dim:   rgba(164, 130, 39, 0.1);
+    --gk-text1:        #070709;
+    --gk-text2:        #4A4950;
+    --gk-text3:        #8B8A8F;
+    --gk-border:       #E5E7EB;
+    --gk-border-a:     rgba(164, 130, 39, 0.25);
+  }
+
 
   *, *::before, *::after {
     box-sizing: border-box;

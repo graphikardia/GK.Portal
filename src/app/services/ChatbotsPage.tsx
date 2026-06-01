@@ -38,7 +38,7 @@ export default function ChatbotsPage() {
               <div className="relative group">
                  <div className="p-3 bg-gk-elevated border border-gk-border">
                     <img 
-                       src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop" 
+                       src="/branding/ai-hero.png" 
                        alt="AI and Automation Nodes" 
                        className="w-full grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                     />

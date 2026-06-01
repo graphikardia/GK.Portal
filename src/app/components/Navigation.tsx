@@ -1,7 +1,6 @@
-'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Sun, Moon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { useTheme } from '../../lib/ThemeContext';
@@ -25,7 +24,7 @@ const navItems = {
 };
 
 export function Navigation() {
-  const { isDark } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -46,9 +45,9 @@ export function Navigation() {
         <div className="container-custom flex items-center justify-between">
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
-            <img src="/branding/logo_symbol.png" alt="GK" className="h-8 brightness-0 invert" />
+            <img src="/branding/logo_symbol.png" alt="GK" className={cn("h-8 transition-all", isDark ? "brightness-0 invert" : "")} />
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg tracking-tight text-white leading-none">GRAPHIKARDIA</span>
+              <span className={cn("font-display font-bold text-lg tracking-tight leading-none", isDark ? "text-white" : "text-black")}>GRAPHIKARDIA</span>
               <span className="text-[8px] font-mono tracking-[0.2em] text-gk-accent opacity-60">PRECISION SYSTEMS</span>
             </div>
           </Link>
@@ -101,20 +100,35 @@ export function Navigation() {
               </div>
             ))}
             
+            <button 
+              onClick={toggleTheme} 
+              className={cn("p-2 border rounded-full transition-colors", isDark ? "border-white/10 text-white hover:bg-white/10" : "border-black/10 text-black hover:bg-black/5")}
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
             <Link
               to="/contact"
-              className="px-8 py-3 bg-gk-accent text-black font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all ml-4"
+              className="px-8 py-3 bg-gk-accent text-black font-bold text-[10px] uppercase tracking-widest hover:bg-gk-text1 hover:text-gk-bg transition-all ml-4"
             >
               Start Project
             </Link>
           </div>
 
-          <button 
-            onClick={() => setMobileMenu(true)}
-            className="lg:hidden text-white p-2 border border-white/10"
-          >
-            <Menu size={20} />
-          </button>
+          <div className="lg:hidden flex items-center gap-4">
+            <button 
+              onClick={toggleTheme} 
+              className={cn("p-2 border transition-colors", isDark ? "border-white/10 text-white" : "border-black/10 text-black")}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button 
+              onClick={() => setMobileMenu(true)}
+              className={cn("p-2 border transition-colors", isDark ? "border-white/10 text-white" : "border-black/10 text-black")}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
         </div>
       </nav>
 

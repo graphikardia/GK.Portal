@@ -38,7 +38,7 @@ export default function MarketingPage() {
               <div className="relative group">
                  <div className="p-3 bg-gk-elevated border border-gk-border">
                     <img 
-                       src="https://images.unsplash.com/photo-1551288049-bbdac8a28a16?q=80&w=2070&auto=format&fit=crop" 
+                       src="/branding/marketing-hero.png" 
                        alt="Marketing Performance Data" 
                        className="w-full grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                     />

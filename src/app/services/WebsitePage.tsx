@@ -34,7 +34,7 @@ export default function WebsitePage() {
               <div className="relative">
                  <div className="p-3 bg-gk-elevated border border-gk-border group aspect-video">
                     <img 
-                       src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
+                       src="/branding/web-hero.png" 
                        alt="Development Infrastructure" 
                        className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                     />

@@ -34,7 +34,7 @@ export default function SocialMediaPage() {
           <div className="flex-1 relative">
              <div className="p-3 bg-gk-elevated border border-gk-border group">
                 <img 
-                   src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" 
+                   src="/branding/social-hero.png" 
                    alt="Social Media Production" 
                    className="w-full grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                 />

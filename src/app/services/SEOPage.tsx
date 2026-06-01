@@ -53,7 +53,7 @@ export default function SEOPage() {
             <div className="relative">
                <div className="p-3 bg-gk-elevated border border-gk-border aspect-square relative group">
                   <img 
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop" 
+                    src="/branding/seo-hero.png" 
                     alt="Analytics Infrastructure" 
                     className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                   />
