@@ -41,10 +41,8 @@ export const TerminalProvider = ({ children }: { children: React.ReactNode }) =>
     localStorage.setItem('gk_config', JSON.stringify(newData));
   };
 
-  if (!mounted) return null;
-
   return (
-    <TerminalContext.Provider value={{ db, updateDb }}>
+    <TerminalContext.Provider value={{ db, updateDb, mounted }}>
       {children}
     </TerminalContext.Provider>
   );

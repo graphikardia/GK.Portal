@@ -1,15 +1,12 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { useTheme } from '../../lib/ThemeContext';
+import { ArrowRight, Play, Server, Zap, BarChart3 } from 'lucide-react';
 
 export const CinematicHero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { isDark, toggleTheme } = useTheme();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,42 +17,35 @@ export const CinematicHero = () => {
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       alpha: true,
-      antialias: window.innerWidth > 768, // Performance optimization for mobile
+      antialias: window.innerWidth > 768,
     });
     
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.position.z = 100;
 
-    // PARTICLE SYSTEM: 1500 NODES (Reduced range on mobile for visibility)
     const isMobile = window.innerWidth < 768;
-    const isLowEnd = typeof navigator !== 'undefined' && (navigator.hardwareConcurrency || 4) <= 4;
-    const particlesCount = isMobile ? (isLowEnd ? 400 : 800) : 1500;
+    const particlesCount = isMobile ? 600 : 2000;
     const posArray = new Float32Array(particlesCount * 3);
 
-    const spread = isMobile ? 120 : 200;
     for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * spread;
+      posArray[i] = (Math.random() - 0.5) * (isMobile ? 180 : 300);
     }
 
     const particlesGeometry = new THREE.BufferGeometry();
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
+    // GOLD PARTICLES
     const particlesMaterial = new THREE.PointsMaterial({
-      size: isMobile ? 0.8 : 0.5,
+      size: 0.4,
       transparent: true,
-      color: isDark ? 0xaaaaaa : 0x333333,
-      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
-      opacity: 0.6,
+      color: 0xC9A84C,
+      blending: THREE.AdditiveBlending,
+      opacity: 0.4,
     });
 
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
-
-    const centerGeometry = new THREE.SphereGeometry(isMobile ? 1 : 1.5, 32, 32);
-    const centerMaterial = new THREE.MeshBasicMaterial({ color: 0xFF4500 });
-    const centerMesh = new THREE.Mesh(centerGeometry, centerMaterial);
-    scene.add(centerMesh);
 
     let mouseX = 0;
     let mouseY = 0;
@@ -63,17 +53,11 @@ export const CinematicHero = () => {
     let targetY = 0;
 
     const onMouseMove = (event: MouseEvent) => {
-      mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
-      mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
-    };
-
-    const onTouchMove = (event: TouchEvent) => {
-      mouseX = (event.touches[0].clientX - window.innerWidth / 2) * 0.05;
-      mouseY = (event.touches[0].clientY - window.innerHeight / 2) * 0.05;
+      mouseX = (event.clientX - window.innerWidth / 2) * 0.03;
+      mouseY = (event.clientY - window.innerHeight / 2) * 0.03;
     };
 
     window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('touchmove', onTouchMove);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -81,13 +65,15 @@ export const CinematicHero = () => {
       targetY += (mouseY - targetY) * 0.05;
       particlesMesh.rotation.y = targetX * 0.1;
       particlesMesh.rotation.x = -targetY * 0.1;
-      const time = Date.now() * 0.0005;
-      particlesMesh.position.y = Math.sin(time) * 2;
+      
+      const time = Date.now() * 0.0001;
+      particlesMesh.position.y = Math.sin(time) * 5;
+      
       renderer.render(scene, camera);
     };
 
     animate();
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 800);
 
     const onResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -99,71 +85,96 @@ export const CinematicHero = () => {
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('resize', onResize);
       clearTimeout(timer);
       particlesGeometry.dispose();
       particlesMaterial.dispose();
-      centerGeometry.dispose();
-      centerMaterial.dispose();
       renderer.dispose();
     };
-  }, [isDark]);
+  }, []);
 
-
+  const stats = [
+    { icon: <Zap size={14} />, label: "Avg_ROI", value: "5.2x" },
+    { icon: <BarChart3 size={14} />, label: "Reach_Gen", value: "30M+" },
+    { icon: <Server size={14} />, label: "Nodes_Active", value: "50+" },
+  ];
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[90vh] md:h-screen overflow-hidden bg-gk-bg">
       <AnimatePresence>
         {loading && (
           <motion.div 
             key="preloader"
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+            className="absolute inset-0 z-[101] bg-gk-bg flex items-center justify-center"
           >
-            <motion.img 
-              src="/branding/logo_symbol.png" 
-              alt="Loading" 
-              className="h-16 md:h-20 invert hue-rotate-180" 
-              animate={{ rotateY: 360 }}
-              transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-            />
+            <div className="flex flex-col items-center gap-4">
+              <motion.div 
+                className="w-12 h-12 border-2 border-gk-accent border-t-transparent rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+              <span className="section-label">Synchronizing_Nodes</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-60" />
       
-      {/* HERO CONTENT */}
-      <div className="relative z-10 h-full flex items-center px-6 md:px-20">
-        <div className="max-w-4xl">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-24">
+        <div className="max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="leading-[0.85] font-black mb-8 md:mb-12 mix-blend-difference uppercase">
-              DATA-DRIVEN<br />
-              <span className="text-stroke-white text-transparent opacity-80">PERFORMANCE</span><br />
-              MARKETING
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px w-12 bg-gk-accent" />
+              <span className="section-label">Performance_Infrastructure_v4</span>
+            </div>
+
+            <h1 className="text-gk-text1 font-black mb-8 leading-[1.05] tracking-tight">
+              WE ARCHITECT <span className="gradient-gold">HIGH-VELOCITY</span><br />
+              ACQUISITION ENGINES.
             </h1>
             
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-              <button className="px-10 py-5 bg-foreground text-background font-display font-black text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-transform">
-                Start a Project
+            <p className="font-body text-gk-text2 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl">
+              Graphikardia translates technical expertise into measurable clinical and B2B growth. 
+              We don't build sites; we deploy performance frameworks that scale.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 mb-20">
+              <Link 
+                to="/contact"
+                className="group relative px-10 py-5 bg-gk-accent text-black font-display font-extrabold text-[11px] uppercase tracking-widest hover:bg-gk-accent-hover transition-all flex items-center justify-center gap-3"
+              >
+                Start an Audit <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <button className="px-10 py-5 border border-gk-border text-gk-text1 font-display font-extrabold text-[11px] uppercase tracking-widest hover:border-gk-accent hover:text-gk-accent transition-all flex items-center justify-center gap-3">
+                <Play size={14} fill="currentColor" /> View Showreel
               </button>
-              <button className="px-10 py-5 border border-foreground/30 font-display font-black text-[10px] uppercase tracking-widest hover:border-foreground transition-colors mix-blend-difference">
-                Free Brand Audit
-              </button>
+            </div>
+
+            {/* PERFORMANCE HUB */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-12 border-t border-gk-border/50 max-w-2xl">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2 text-gk-accent">
+                    {stat.icon}
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase opacity-60">[{stat.label}]</span>
+                  </div>
+                  <span className="text-3xl font-display font-bold text-gk-text1">{stat.value}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* SCROLL INDICATOR */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 mix-blend-difference hidden sm:flex">
-          <p className="text-[8px] font-black uppercase tracking-[0.5em] text-white/40">SCROLL_FOR_INTEL</p>
-          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
-        </div>
+      <div className="absolute bottom-12 right-12 flex flex-col items-end gap-2 md:opacity-40 hover:opacity-100 transition-opacity">
+        <span className="text-[10px] font-mono text-gk-text1 tracking-widest uppercase">system_status:</span>
+        <span className="text-[10px] font-mono text-gk-accent font-bold tracking-widest uppercase">handshake_ready</span>
       </div>
     </div>
   );

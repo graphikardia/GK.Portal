@@ -1,71 +1,112 @@
 'use client';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../lib/ThemeContext';
-import { cn } from '../../lib/utils';
-
-const social = [
-  { icon: Facebook, href: 'https://facebook.com/graphikardia', label: 'Facebook' },
-  { icon: Instagram, href: 'https://instagram.com/graphikardia', label: 'Instagram' },
-  { icon: Linkedin, href: 'https://linkedin.com/company/graphikardia', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/graphikardia', label: 'Twitter' },
-];
+import { Instagram, Linkedin, Twitter, Mail, ArrowUpRight, Globe } from 'lucide-react';
 
 export function Footer() {
-  const { isDark } = useTheme();
+  const currentYear = new Date().getFullYear();
+
+  const links = {
+    Services: [
+      { label: 'SEO/AEO Architecture', href: '/services/seo' },
+      { label: 'Social Media Growth', href: '/services/social-media' },
+      { label: 'Digital Portals', href: '/services/website' },
+      { label: 'Performance Ads', href: '/services/marketing' },
+      { label: 'AI Lead Agents', href: '/services/chatbots' },
+    ],
+    Company: [
+      { label: 'Our Story', href: '/about' },
+      { label: 'Vault (Selected Work)', href: '/work' },
+      { label: 'Client Results', href: '/case-studies' },
+      { label: 'Testimonials', href: '/testimonials' },
+      { label: 'Contact Node', href: '/contact' },
+    ],
+    Legal: [
+      { label: 'Terms of Sync', href: '#' },
+      { label: 'Privacy Protocol', href: '#' },
+    ]
+  };
 
   return (
-    <footer className={cn("border-t border-foreground/5 py-24 bg-background")}>
+    <footer className="bg-gk-secondary pt-32 pb-12 border-t border-gk-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-24">
-          <div>
-            <div className="flex items-center gap-4 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32">
+          {/* BRAND */}
+          <div className="lg:col-span-5">
+            <Link to="/" className="flex items-center gap-3 mb-8 group">
               <img src="/branding/logo_symbol.png" alt="GK" className="h-10 logo-filter" />
-              <h2 className="text-3xl font-black tracking-tightest uppercase">GRAPHIKARDIA</h2>
-            </div>
-            <p className="text-xl font-body text-muted-foreground max-w-md leading-relaxed uppercase">
-              Architecting high-performance digital infrastructure for those who demand category dominance.
+              <div className="flex flex-col">
+                <span className="font-display font-black text-2xl tracking-tighter text-gk-text1">GRAPHIKARDIA</span>
+                <span className="text-[10px] font-mono tracking-[0.3em] text-gk-accent opacity-80 -mt-1 uppercase">Precision_Marketing_Systems</span>
+              </div>
+            </Link>
+            <p className="font-body text-gk-text2 text-lg leading-relaxed max-w-sm mb-12 uppercase tracking-wider">
+              WE ARCHITECT HIGH-VELOCITY ACQUISITION ENGINES FOR THE CLINICAL AND B2B ELITE.
             </p>
+            <div className="flex gap-6">
+              {[
+                { icon: <Linkedin size={18} />, href: "#" },
+                { icon: <Instagram size={18} />, href: "#" },
+                { icon: <Twitter size={18} />, href: "#" }
+              ].map((social, i) => (
+                <a key={i} href={social.href} className="w-10 h-10 border border-gk-border flex items-center justify-center text-gk-text2 hover:text-gk-accent hover:border-gk-accent transition-all">
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-12">
+          {/* NAV LINKS */}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-8 text-glow">System_Map</h4>
-              <ul className="space-y-4 text-[10px] font-black uppercase tracking-widest text-foreground/60">
-                <li><Link to="/work" className="hover:text-foreground transition-colors">The_Vault</Link></li>
-                <li><Link to="/about" className="hover:text-foreground transition-colors">System_Nodes</Link></li>
-                <li><Link to="/case-studies" className="hover:text-foreground transition-colors">The_Proof</Link></li>
-                <li><Link to="/blog" className="hover:text-foreground transition-colors">Intel_Logs</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors">Handshake</Link></li>
+              <h4 className="section-label mb-8">Capabilities</h4>
+              <ul className="space-y-4">
+                {links.Services.map(link => (
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-gk-text2 hover:text-gk-accent transition-colors text-xs font-bold uppercase tracking-widest">{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-8 text-glow">Node_Connections</h4>
-              <div className="flex gap-6">
-                {social.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground hover:opacity-50 transition-all"
-                  >
-                    <item.icon size={18} strokeWidth={1.5} />
-                  </a>
+              <h4 className="section-label mb-8">Node_System</h4>
+              <ul className="space-y-4">
+                {links.Company.map(link => (
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-gk-text2 hover:text-gk-accent transition-colors text-xs font-bold uppercase tracking-widest">{link.label}</Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
+            </div>
+            <div>
+              <h4 className="section-label mb-8">Contact</h4>
+              <ul className="space-y-4">
+                 <li>
+                    <a href="mailto:graphikardia@gmail.com" className="text-gk-text1 text-xs font-bold uppercase tracking-widest hover:text-gk-accent transition-colors flex items-center gap-2">
+                       <Mail size={12} /> Email_Port
+                    </a>
+                 </li>
+                 <li>
+                    <span className="text-gk-text3 text-[10px] font-mono uppercase font-bold tracking-widest block mb-1">Bangalore_IN</span>
+                    <span className="text-gk-text1 text-xs font-bold uppercase tracking-widest">Global_Operations</span>
+                 </li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[8px] font-bold uppercase tracking-[0.5em] text-muted-foreground">
-            © {new Date().getFullYear()} GRAPHIKARDIA_SYSTEMS. ROOT_LEVEL_ACCESS.
-          </p>
-          <div className="flex gap-12 text-[8px] font-bold uppercase tracking-widest text-muted-foreground">
-            <Link to="/admin" className="opacity-10 hover:opacity-100 transition-opacity">Terminal_X</Link>
-            <a href="/privacy" className="hover:text-foreground transition-colors">Privacy_Protocol</a>
-            <a href="/terms" className="hover:text-foreground transition-colors">Terms_of_Service</a>
+        {/* BOTTOM */}
+        <div className="pt-12 border-t border-gk-border/50 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-mono text-gk-text3 uppercase font-bold tracking-widest">©_{currentYear} GRAPHIKARDIA_SYSTEMS</span>
+            <div className="h-1 w-1 bg-gk-accent rounded-full" />
+            <span className="text-[10px] font-mono text-gk-text3 uppercase font-bold tracking-widest italic">Node:Prime_Bangalore</span>
+          </div>
+          
+          <div className="flex gap-8">
+            {links.Legal.map(link => (
+              <a key={link.label} href={link.href} className="text-[10px] font-mono text-gk-text3 hover:text-gk-accent transition-colors uppercase font-bold tracking-widest">{link.label}</a>
+            ))}
           </div>
         </div>
       </div>

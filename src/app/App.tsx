@@ -21,6 +21,14 @@ import WorkPage from './WorkPage';
 import TestimonialsPage from './TestimonialsPage';
 import { Analytics } from './lib/analytics';
 
+// SERVICE PAGES
+import SEOPage from './services/SEOPage';
+import SocialMediaPage from './services/SocialMediaPage';
+import WebsitePage from './services/WebsitePage';
+import MarketingPage from './services/MarketingPage';
+import ChatbotsPage from './services/ChatbotsPage';
+import AdvertisingPage from './services/AdvertisingPage';
+
 function GlobalSystems() {
   const navigate = useNavigate();
 
@@ -124,6 +132,15 @@ export default function App() {
                 <Route path="/work" element={<WorkPage />} />
                 <Route path="/testimonials" element={<TestimonialsPage />} />
                 <Route path="/admin" element={<AdminPortal />} />
+
+                {/* SERVICE ROUTES */}
+                <Route path="/services/seo" element={<SEOPage />} />
+                <Route path="/services/social-media" element={<SocialMediaPage />} />
+                <Route path="/services/website" element={<WebsitePage />} />
+                <Route path="/services/marketing" element={<MarketingPage />} />
+                <Route path="/services/chatbots" element={<ChatbotsPage />} />
+                <Route path="/services/advertising" element={<AdvertisingPage />} />
+
                 <Route path="*" element={<MainLayout />} />
               </Routes>
               <Footer />

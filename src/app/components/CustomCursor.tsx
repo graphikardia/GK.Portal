@@ -1,114 +1,73 @@
 'use client';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
-import { useTheme } from '../../lib/ThemeContext';
 
-export function CustomCursor({ color }: { color?: string }) {
-  const { isDark } = useTheme();
+export const CustomCursor = () => {
+  const [isPointer, setIsPointer] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
 
-  const x = useSpring(mouseX, { damping: 15, stiffness: 300 });
-  const y = useSpring(mouseY, { damping: 15, stiffness: 300 });
+  const moveCursor = useCallback((e: MouseEvent) => {
+    cursorX.set(e.clientX);
+    cursorY.set(e.clientY);
+    
+    const target = e.target as HTMLElement;
+    setIsPointer(
+      window.getComputedStyle(target).cursor === 'pointer' || 
+      target.tagName === 'A' || 
+      target.tagName === 'BUTTON' ||
+      target.closest('a') !== null ||
+      target.closest('button') !== null
+    );
+  }, [cursorX, cursorY]);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
-    };
-
-    const handleHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const interactive = target.closest('a') || target.closest('button') || 
-                         target.closest('input') || target.closest('textarea');
-      setIsHovering(!!interactive);
-    };
+    const onMouseEnter = () => setIsVisible(true);
+    const onMouseLeave = () => setIsVisible(false);
 
     window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleHover);
+    document.addEventListener('mouseenter', onMouseEnter);
+    document.addEventListener('mouseleave', onMouseLeave);
+
     return () => {
       window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseover', handleHover);
+      document.removeEventListener('mouseenter', onMouseEnter);
+      document.removeEventListener('mouseleave', onMouseLeave);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [moveCursor]);
 
-  if (!isVisible) return null;
-
-  const defaultColor = isDark ? '#ffffff' : '#000000';
-  const cursorColor = color || defaultColor;
+  if (typeof window === 'undefined') return null;
 
   return (
-    <div 
-      className="fixed inset-0 pointer-events-none hidden lg:block" 
-      style={{ zIndex: 999999 }}
-    >
-      {/* Main dot */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{ 
-          x, y, translateX: '-50%', translateY: '-50%',
-          width: 8,
-          height: 8,
-          backgroundColor: cursorColor,
-        }}
-      />
-      
+    <div className="fixed inset-0 pointer-events-none z-[999999] hidden md:block">
       {/* Outer ring */}
       <motion.div
-        className="absolute rounded-full border-2"
-        style={{ 
-          x, y, translateX: '-50%', translateY: '-50%',
-          width: isHovering ? 40 : 24,
-          height: isHovering ? 40 : 24,
-          borderColor: cursorColor,
-          opacity: 0.5,
+        className="fixed top-0 left-0 w-8 h-8 border border-gk-accent rounded-full -ml-4 -mt-4 mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          opacity: isVisible ? 0.3 : 0,
+          scale: isPointer ? 1.5 : 1,
         }}
-        animate={{ 
-          scale: isHovering ? 1.2 : 1,
-          borderRadius: isHovering ? '30%' : '50%'
-        }}
-        transition={{ type: 'spring', damping: 20 }}
+        transition={{ scale: { type: 'spring', ...springConfig } }}
       />
-
-      {/* Crosshair on hover */}
-      {isHovering && (
-        <>
-          <motion.div
-            className="absolute"
-            style={{ 
-              x, y, translateX: '-50%', translateY: '-50%',
-              width: 60,
-              height: 60,
-            }}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-3" style={{ backgroundColor: cursorColor }} />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-3" style={{ backgroundColor: cursorColor }} />
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-px" style={{ backgroundColor: cursorColor }} />
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-px" style={{ backgroundColor: cursorColor }} />
-          </motion.div>
-        </>
-      )}
-
-      {/* Click effect */}
+      
+      {/* Inner dot */}
       <motion.div
-        className="absolute rounded-full border-2 border-[#DC143C]"
-        style={{ 
-          x, y, translateX: '-50%', translateY: '-50%',
-          width: 16,
-          height: 16,
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-gk-accent rounded-full -ml-[3px] -mt-[3px]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          opacity: isVisible ? 1 : 0,
+          scale: isPointer ? 0.5 : 1,
         }}
-        initial={{ scale: 0, opacity: 1 }}
-        animate={{ scale: 0, opacity: 0 }}
-        whileTap={{ scale: 2, opacity: 0 }}
-        transition={{ duration: 0.3 }}
       />
     </div>
   );
-}
+};

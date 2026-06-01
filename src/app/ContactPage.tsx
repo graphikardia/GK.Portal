@@ -1,105 +1,135 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Phone, MapPin, Send, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Send, ShieldCheck, Clock, ArrowRight } from 'lucide-react';
 import { useTheme } from '../lib/ThemeContext';
 
 const contactInfo = {
   email: "graphikardia@gmail.com",
   phone: "+91 7975594203",
   location: "BANGALORE_IN",
-  availability: "0900_1900_IST"
+  availability: "09:00 - 19:00 IST"
 };
 
 const services = [
-  "ACQUISITION_ENGINE",
-  "DIGITAL_INFRASTRUCTURE",
-  "AI_CONTENT_CORE",
-  "MEDICAL_AUTHORITY_HUB",
-  "STRATEGIC_DEEP_SCAN"
+  "SEO & AEO Architecture",
+  "Social Media Growth",
+  "High-Performance Website",
+  "Performance Marketing",
+  "AI & Automation",
+  "Global Brand Saturation"
 ];
 
 export default function ContactPage() {
-  const { isDark } = useTheme();
-
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-500 font-body">
-      {/* HEADER NAV */}
-
+    <div className="min-h-screen bg-gk-bg text-gk-text1">
       <section className="pt-52 pb-32 px-6">
         <div className="max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="mb-24">
-            <h1 className="text-6xl md:text-[140px] leading-[0.8] mb-12">
-              ESTABLISH_<br />
-              <span className="text-stroke-white text-transparent opacity-80">CONNECTION</span>
+            <div className="flex items-center gap-4 mb-8">
+               <div className="w-12 h-px bg-gk-accent" />
+               <span className="section-label text-gk-accent">Inquiry_Channel_v4</span>
+            </div>
+            <h1 className="text-6xl md:text-[140px] leading-[0.8] font-black mb-12">
+              INITIATE_<br />
+              <span className="gradient-gold bg-clip-text">STRATEGY</span>
             </h1>
-            <p className="font-body text-xl md:text-2xl text-muted-foreground uppercase tracking-widest max-w-2xl leading-relaxed">
-              ENCRYPTED_HANDSHAKE_REQUIRED. OUR_SYSTEM_OPERATES_ON_A_CAPACITY_FILTER_BASIS.
+            <p className="font-body text-xl md:text-2xl text-gk-text2 uppercase tracking-widest max-w-2xl leading-relaxed">
+               WE OPERATE ON A CAPACITY-FILTERED BASIS. PLEASE PROVIDE PROJECT ARCHITECTURE DYNAMICS FOR EFFECTIVE TRIAGE.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
             {/* LEFT - INTEL */}
             <div className="lg:col-span-5 space-y-12">
-              <div className="p-10 border border-foreground/5 bg-noir-800/10">
-                <h3 className="text-xl font-black uppercase mb-8">NODE_INFORMATION</h3>
-                <div className="space-y-8 uppercase text-[10px] font-black tracking-widest">
+              <div className="p-12 glass-card bg-gk-secondary/50 border-gk-border-a">
+                <h3 className="section-label mb-10 block">Global_Nodes</h3>
+                <div className="space-y-10 uppercase text-xs font-bold tracking-[0.2em] text-gk-text1">
                   <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-6 group">
-                    <Mail size={16} className="text-foreground group-hover:opacity-50 transtion-opacity" />
-                    <span>{contactInfo.email}</span>
+                    <div className="w-10 h-10 border border-gk-border flex items-center justify-center text-gk-text3 group-hover:text-gk-accent group-hover:border-gk-accent transition-all">
+                       <Mail size={16} />
+                    </div>
+                    <span className="group-hover:text-gk-accent transition-colors">{contactInfo.email}</span>
                   </a>
                   <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-6 group">
-                    <Phone size={16} className="text-foreground group-hover:opacity-50 transtion-opacity" />
-                    <span>{contactInfo.phone}</span>
+                    <div className="w-10 h-10 border border-gk-border flex items-center justify-center text-gk-text3 group-hover:text-gk-accent group-hover:border-gk-accent transition-all">
+                       <Phone size={16} />
+                    </div>
+                    <span className="group-hover:text-gk-accent transition-colors">{contactInfo.phone}</span>
                   </a>
                   <div className="flex items-center gap-6">
-                    <MapPin size={16} className="text-foreground" />
+                    <div className="w-10 h-10 border border-gk-border flex items-center justify-center text-gk-text3">
+                       <MapPin size={16} />
+                    </div>
                     <span>{contactInfo.location}</span>
                   </div>
                   <div className="flex items-center gap-6">
-                    <ShieldCheck size={16} className="text-foreground" />
+                    <div className="w-10 h-10 border border-gk-border flex items-center justify-center text-gk-text3">
+                       <Clock size={16} />
+                    </div>
                     <span>UPTIME:_{contactInfo.availability}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-10 border border-foreground/5 bg-noir-800/10">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-8">SECURE_TRANSMISSION</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground uppercase opacity-60">
-                  Submissions are reviewed by our architects within 24 hours. High-ticket inquiries prioritized.
+              <div className="p-10 border border-gk-border bg-gk-secondary/20">
+                <div className="flex items-center gap-4 mb-6">
+                   <ShieldCheck size={16} className="text-gk-accent" />
+                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-gk-text3">Communication_Security</span>
+                </div>
+                <p className="text-xs leading-relaxed text-gk-text3 uppercase opacity-60 tracking-widest">
+                  High-ticket inquiries are triaged by our lead architects within 24 business hours. Confidentiality guaranteed.
                 </p>
               </div>
             </div>
 
-            {/* RIGHT - TRANSMITTER */}
+            {/* RIGHT - FORM */}
             <div className="lg:col-span-7">
-              <form className="space-y-8 bg-noir-800/5 p-12 border border-foreground/5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Identity_Full_Name</label>
-                    <input type="text" placeholder="ENTER_NAME" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase" />
+              <form className="space-y-10 p-12 lg:p-16 glass-card border-gk-border bg-gk-secondary/40 relative overflow-hidden group">
+                 <div className="absolute top-0 right-0 p-8 opacity-[0.03] -rotate-12">
+                     <Send size={150} />
+                 </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-gk-text3">Identity_Node</label>
+                    <input 
+                      type="text" 
+                      placeholder="ENTER_FULL_NAME" 
+                      className="w-full bg-gk-bg/50 border-b border-gk-border py-4 px-2 outline-none focus:border-gk-accent transition-colors font-display text-xs font-bold uppercase tracking-widest text-gk-text1" 
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Email_Address</label>
-                    <input type="email" placeholder="ENTER_EMAIL" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase" />
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-gk-text3">Email_Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="ENTER_EMAIL_ROOT" 
+                      className="w-full bg-gk-bg/50 border-b border-gk-border py-4 px-2 outline-none focus:border-gk-accent transition-colors font-display text-xs font-bold uppercase tracking-widest text-gk-text1" 
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Service_Node_Required</label>
-                  <select className="w-full bg-transparent border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground appearance-none font-mono text-xs uppercase">
-                    {services.map(s => <option key={s} value={s}>{s}</option>)}
+                <div className="space-y-3">
+                  <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-gk-text3">Requirement_Node</label>
+                  <select className="w-full bg-transparent border-b border-gk-border py-4 px-2 outline-none focus:border-gk-accent appearance-none font-display text-xs font-bold uppercase tracking-widest text-gk-text1">
+                    {services.map(s => <option key={s} value={s} className="bg-gk-bg">{s}</option>)}
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[9px] font-black uppercase tracking-widest opacity-30">Message_Payload</label>
-                  <textarea rows={6} placeholder="DESCRIBE_YOUR_ARCHITECTURE_DYNAMICS" className="w-full bg-black/20 border-b border-foreground/20 py-4 px-2 outline-none focus:border-foreground transition-colors font-mono text-xs uppercase resize-none"></textarea>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-gk-text3">Message_Payload</label>
+                  <textarea 
+                    rows={5} 
+                    placeholder="DESCRIBE_YOUR_BUSINESS_ARCHITECTURE" 
+                    className="w-full bg-gk-bg/50 border-b border-gk-border py-4 px-2 outline-none focus:border-gk-accent transition-colors font-display text-xs font-bold uppercase tracking-widest text-gk-text1 resize-none"
+                  ></textarea>
                 </div>
 
-                <button type="submit" className="w-full py-6 bg-foreground text-background font-black uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-4">
-                  <Send size={16} /> EXECUTE_TRANSMISSION
+                <button 
+                  type="submit" 
+                  className="w-full py-6 bg-gk-accent text-black font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent-hover transition-all flex items-center justify-center gap-4 relative z-10 shadow-[0_0_20px_rgba(201,168,76,0.1)]"
+                >
+                  <Send size={16} /> INITIALIZE TRANSMISSION
                 </button>
               </form>
             </div>

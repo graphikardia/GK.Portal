@@ -1,127 +1,125 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Globe, Target, TrendingUp, Zap, Users } from 'lucide-react';
+import { ArrowUpRight, BarChart3, TrendingUp, Zap, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../lib/ThemeContext';
 
-const caseStudies = [
+const cases = [
   {
     id: 1,
-    client: "DR. DARSHANA REDDY",
-    website: "drdarshanareddy.com",
-    category: "HEALTHCARE_AUTHORITY",
-    problem: "Establishing clinical dominance in a saturated medical market. Sub-optimal lead flow for high-ticket consultations.",
-    engine: "Clinical Premium Infrastructure + Medical AEO (Answer Engine Optimization).",
-    roi: "95%_INQUIRY_LIFT",
-    details: "150+ monthly appointments automated. Top 3 Google ranking for core medical nodes."
+    title: "Dr. Reddy Medical Group",
+    cat: "HEALTHCARE_AUTHORITY",
+    stat: "210% Leads",
+    context: "Multi-location practice with fragmented digital booking and zero organic visibility for high-ticket surgeries.",
+    strategy: "Unified AEO Architecture + Tactical Performance Ads + WhatsApp Lead Agent.",
+    result: "Instant booking synchronization across 3 cities. CPA reduced by 55%.",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop"
   },
   {
     id: 2,
-    client: "KOSHYS GROUP (KGI)",
-    website: "admissions.kgi.edu.in",
-    category: "EDUCATIONAL_INFRASTRUCTURE",
-    problem: "Friction-heavy admission funnel causing high drop-off rates in student inquiries.",
-    engine: "Digital Infrastructure overhaul + High-Velocity Funnels.",
-    roi: "3X_ENROLLMENT",
-    details: "50% reduction in processing latency. 120% surge in mobile traffic nodes."
+    title: "Global Logistics Corp",
+    cat: "B2B_INFRASTRUCTURE",
+    stat: "7.2x ROI",
+    context: "Invisible in premium freight keywords. Spending $50k/mo on broad-match ads with 1% conversion rate.",
+    strategy: "Deep-Scan Keyword Hardening + Performance Portal Redesign + Answer Engine Optimization.",
+    result: "Organic traffic scaled 400% in 120 days. ROI sustained at 7x over 12 months.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: 3,
-    client: "GLOBAL ACADEMIA (KGA)",
-    website: "admissions.koshysglobalacademia.com",
-    category: "GLOBAL_PORTAL",
-    problem: "Weak international brand recognition and fragmented inquiry tracking systems.",
-    engine: "Acquisition Engine + CRM Integrated Hub.",
-    roi: "200%_INTL_GROWTH",
-    details: "40% increase in application velocity. Global brand recognition achieved."
-  },
-  {
-    id: 4,
-    client: "GEETHA GOKULA",
-    website: "gokula.graphikardia.com",
-    category: "ELITE_PORTFOLIO",
-    problem: "Need for high-fidelity personal branding to attract premium tier B2B clients.",
-    engine: "Tech-Noir Design System + Neural Content Strategy.",
-    roi: "212%_PROFILE_SURGE",
-    details: "YUVA Summit recognition. 93% surge in account reach metrics."
+    title: "KGI Admissions Node",
+    cat: "EDUCATIONAL_PORTAL",
+    stat: "95% Auto",
+    context: "Manual student inquiry management causing 40% lead leakage in the first 12 hours.",
+    strategy: "Custom CRM Integration + AI Enrollment Agent + Digital Infrastructure Overhaul.",
+    result: "Automated qualification of 40,000+ candidates. Zero manual entry required for stage-1.",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
   }
 ];
 
 export default function CaseStudiesPage() {
-  const { isDark } = useTheme();
-
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
-      {/* HEADER NAV */}
-
+    <div className="min-h-screen bg-gk-bg text-gk-text1">
       <section className="pt-52 pb-32 px-6">
-        <div className="max-w-[1800px] mx-auto">
-          {/* PAGE TITLE */}
-          <div className="mb-32">
-            <h1 className="text-6xl md:text-[140px] leading-[0.8] mb-12">
-              THE_<br />
-              <span className="text-stroke-white text-transparent opacity-80">PROOF</span>
-            </h1>
-            <p className="font-body text-xl md:text-2xl text-muted-foreground uppercase tracking-widest max-w-2xl leading-relaxed">
-              HARD DATA OVER AESTHETIC OPINION. PERFORMANCE METRICS FROM THE GRAPHIKARDIA ENGINE.
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto">
+          <header className="mb-40">
+             <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-px bg-gk-accent" />
+                <span className="section-label">Performance_Logs_v2</span>
+             </div>
+             <h1 className="text-6xl md:text-[120px] leading-[0.8] font-black mb-12">
+               THE_<span className="gradient-gold bg-clip-text">INTELLIGENCE</span>
+             </h1>
+             <p className="font-body text-xl md:text-2xl text-gk-text2 uppercase tracking-widest max-w-2xl leading-relaxed">
+               DATA-DRIVEN SUCCESS ARCHITECTURES. NO HYPOTHESES, JUST HARDENED RESULTS.
+             </p>
+          </header>
 
-          {/* GRID OF CASE STUDIES */}
-          <div className="space-y-4">
-            {caseStudies.map((study, idx) => (
-              <motion.div
-                key={study.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+          <div className="space-y-40">
+            {cases.map((c, i) => (
+              <motion.div 
+                key={c.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group border border-foreground/5 bg-noir-800/10 p-12 hover:bg-foreground hover:text-background transition-all duration-700"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                  <div className="lg:col-span-3">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-background/40 mb-2">[{study.category}]</p>
-                    <h3 className="text-3xl font-black mb-1">{study.client}</h3>
-                    <a href={`https://${study.website}`} className="text-[10px] font-mono text-foreground group-hover:text-background opacity-40 hover:opacity-100 flex items-center gap-2">
-                      {study.website} <ArrowUpRight size={12} />
-                    </a>
-                  </div>
+                <div className="lg:col-span-1 border-l-4 border-gk-accent pl-6">
+                   <span className="text-4xl font-display font-black text-gk-accent/20 italic">0{c.id}</span>
+                </div>
+                
+                <div className="lg:col-span-6 space-y-12">
+                   <div>
+                      <span className="section-label text-gk-text3 mb-4 block tracking-[0.4em]">{c.cat}</span>
+                      <h2 className="text-4xl md:text-7xl font-black italic mb-8">{c.title}</h2>
+                      <div className="p-8 bg-gk-accent/5 border border-gk-accent/20 border-l-[10px] border-l-gk-accent flex items-center justify-between">
+                         <span className="text-4xl md:text-6xl font-display font-black gradient-gold">{c.stat.split(' ')[0]}</span>
+                         <span className="text-[10px] font-mono text-gk-text2 uppercase font-bold tracking-widest text-right">{c.stat.split(' ')[1]}<br/>LIFT_MEASURED</span>
+                      </div>
+                   </div>
 
-                  <div className="lg:col-span-6 grid md:grid-cols-2 gap-12">
-                    <div>
-                      <p className="text-[8px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-background/40 mb-3">BASELINE_PROBLEM</p>
-                      <p className="text-sm font-body leading-relaxed group-hover:text-background/80">{study.problem}</p>
-                    </div>
-                    <div>
-                      <p className="text-[8px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-background/40 mb-3">ENGINE_DEPLOYED</p>
-                      <p className="text-sm font-body leading-relaxed group-hover:text-background/80">{study.engine}</p>
-                    </div>
-                  </div>
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-gk-border/50">
+                      <div className="space-y-4">
+                         <h4 className="text-xs font-black uppercase text-gk-accent tracking-widest">The_Bottleneck</h4>
+                         <p className="text-sm font-body text-gk-text1 leading-relaxed uppercase tracking-[0.1em]">{c.context}</p>
+                      </div>
+                      <div className="space-y-4">
+                         <h4 className="text-xs font-black uppercase text-gk-accent tracking-widest">Our_Strategy</h4>
+                         <p className="text-sm font-body text-gk-text1 leading-relaxed uppercase tracking-[0.1em] italic">{c.strategy}</p>
+                      </div>
+                   </div>
 
-                  <div className="lg:col-span-3 text-right">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-background/40 mb-2">HARD_OUTCOME</p>
-                    <h4 className="text-5xl md:text-6xl font-black italic">{study.roi}</h4>
-                    <p className="text-[9px] font-bold mt-2 uppercase tracking-widest group-hover:text-background/60 leading-relaxed">
-                      {study.details}
-                    </p>
-                  </div>
+                   <div className="p-8 border border-gk-border bg-gk-secondary/50">
+                      <div className="flex items-center gap-4 mb-4">
+                         <CheckCircle2 size={16} className="text-gk-accent" />
+                         <span className="text-xs font-bold uppercase tracking-widest">Hardened_Result</span>
+                      </div>
+                      <p className="text-xl font-bold italic leading-relaxed text-gk-text1">"{c.result}"</p>
+                   </div>
+                </div>
+
+                <div className="lg:col-span-5 relative group">
+                   <div className="p-2 border border-gk-border bg-gk-bg relative z-10">
+                      <img 
+                        src={c.image} 
+                        alt={c.title} 
+                        className="w-full grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 aspect-square object-cover" 
+                      />
+                   </div>
+                   {/* Decorative lines */}
+                   <div className="absolute -top-6 -right-6 w-full h-full border border-gk-accent/10 -z-10 group-hover:border-gk-accent/30 transition-colors" />
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* SUMMARY GRID */}
-          <div className="mt-32 grid grid-cols-2 lg:grid-cols-4 border border-foreground/10 divide-x divide-y md:divide-y-0 divide-foreground/10">
-            {[
-              { value: "6+", label: "SYSTEMS_DELIVERED" },
-              { value: "200%", label: "AVG_LEAD_VELOCITY" },
-              { value: "100%", label: "CLIENT_HARDENING" },
-              { value: "5+", label: "YEARS_OF_STRESS_TESTING" }
-            ].map((stat, i) => (
-              <div key={i} className="p-10 text-center">
-                <div className="text-4xl font-black mb-2">{stat.value}</div>
-                <div className="text-[9px] font-mono uppercase tracking-widest opacity-40">{stat.label}</div>
-              </div>
-            ))}
+          {/* FINAL CTA */}
+          <div className="mt-60 border border-gk-border p-16 md:p-32 text-center relative overflow-hidden group">
+             <div className="absolute inset-0 bg-gk-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+             <h2 className="text-4xl md:text-8xl mb-12">READY TO BE A<br /><span className="gradient-gold">CASE STUDY?</span></h2>
+             <Link to="/contact" className="inline-flex py-6 px-16 bg-gk-text1 text-gk-bg font-display font-black text-xs uppercase tracking-widest hover:bg-gk-accent transition-colors">
+                Initiate Project Scoping
+             </Link>
           </div>
         </div>
       </section>
