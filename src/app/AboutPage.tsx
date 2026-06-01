@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail, Phone, MapPin, Target, TrendingUp, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../lib/ThemeContext';
-import { Footer } from './components/Footer';
 
 const stats = [
   { num: "50+", label: "PROJECTS_EXECUTED", icon: Target },
@@ -25,13 +24,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       {/* HEADER NAV REPLACEMENT */}
-      <nav className="fixed top-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference">
-        <Link to="/" className="flex items-center gap-4">
-          <img src="/branding/logo_symbol.png" alt="GK" className="h-8 logo-filter" />
-          <span className="font-display font-black text-xl tracking-tightest">GRAPHIKARDIA</span>
-        </Link>
-        <Link to="/" className="text-[10px] font-black uppercase tracking-widest hover:opacity-50 transition-opacity">Back_to_Node</Link>
-      </nav>
 
       {/* HERO SECTION */}
       <section className="pt-52 pb-32 px-6">
@@ -102,8 +94,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

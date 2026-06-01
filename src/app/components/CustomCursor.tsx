@@ -43,7 +43,7 @@ export function CustomCursor({ color }: { color?: string }) {
 
   return (
     <div 
-      className="fixed inset-0 pointer-events-none hidden md:block" 
+      className="fixed inset-0 pointer-events-none hidden lg:block" 
       style={{ zIndex: 999999 }}
     >
       {/* Main dot */}

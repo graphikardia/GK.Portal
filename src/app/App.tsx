@@ -1,15 +1,16 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from '../lib/ThemeContext';
 
-// NEW TECH-NOIR COMPONENTS
+// CORE COMPONENTS
 import { CinematicHero } from './components/CinematicHero';
 import { BentoGrid } from './components/BentoGrid';
 import { MedicalHub } from './components/MedicalHub';
 import { ProofSection } from './components/ProofSection';
 import { CustomCursor } from './components/CustomCursor';
 import { LoadingScreen } from './components/LoadingScreen';
+import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import AdminPortal from './admin/page';
 import AboutPage from './AboutPage';
@@ -62,13 +63,19 @@ function GlobalSystems() {
   return null;
 }
 
-function ThemeGate({ children }: { children: React.ReactNode }) {
-  const { isDark } = useTheme();
+// ScrollToTop must be INSIDE <Router> since it uses useLocation
+function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  return null;
+}
+
+function ThemeSync() {
+  const { isDark } = useTheme();
 
   useEffect(() => {
     const root = document.documentElement;
@@ -77,7 +84,7 @@ function ThemeGate({ children }: { children: React.ReactNode }) {
     document.body.style.backgroundColor = isDark ? '#000000' : '#F8F9FA';
   }, [isDark]);
   
-  return <div className="min-h-screen bg-background text-foreground transition-colors duration-500">{children}</div>;
+  return null;
 }
 
 function MainLayout() {
@@ -87,38 +94,37 @@ function MainLayout() {
       <BentoGrid />
       <MedicalHub />
       <ProofSection />
-      <Footer />
     </main>
   );
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
   return (
     <ThemeProvider>
       <Analytics />
-      <ThemeGate>
+      <ThemeSync />
+      <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black transition-colors duration-500">
         <CustomCursor color="white" />
         <Router>
+          <ScrollToTop />
           <GlobalSystems />
-          {loading ? (
-            <LoadingScreen onComplete={() => setLoading(false)} />
-          ) : (
-            <Routes>
-              <Route path="/" element={<MainLayout />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/case-studies" element={<CaseStudiesPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
-              <Route path="/admin" element={<AdminPortal />} />
-              <Route path="*" element={<MainLayout />} />
-            </Routes>
-          )}
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<MainLayout />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/work" element={<WorkPage />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route path="/admin" element={<AdminPortal />} />
+            <Route path="*" element={<MainLayout />} />
+          </Routes>
+          <Footer />
         </Router>
-      </ThemeGate>
+      </div>
     </ThemeProvider>
   );
 }

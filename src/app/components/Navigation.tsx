@@ -39,81 +39,63 @@ export function Navigation({ cartCount = 0, openSidebar = () => {} }: { cartCoun
   return (
     <>
       <nav className={cn(
-        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
-        isScrolled 
-          ? (isDark ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/10" : "bg-white/95 backdrop-blur-md border-b border-black/10") 
-          : (isDark ? "bg-transparent" : "bg-transparent")
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 md:px-12 py-8 md:py-10",
+        isScrolled && (isDark ? "bg-black/80 backdrop-blur-xl border-b border-white/5" : "bg-white/80 backdrop-blur-xl border-b border-black/5")
       )}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20">
-            <AnimatedLogo className={cn("text-xl", isDark ? "text-white" : "text-black")} />
+        <div className="max-w-[1800px] mx-auto flex items-center justify-between mix-blend-difference">
+          <Link to="/" className="flex items-center gap-4 group">
+            <img src="/branding/logo_symbol.png" alt="GK" className="h-8 logo-filter group-hover:scale-110 transition-transform" />
+            <span className="font-display font-black text-xl tracking-tightest text-white hidden sm:block">GRAPHIKARDIA</span>
+          </Link>
 
-            <div className="hidden lg:flex items-center gap-8">
-              {Object.entries(navItems).map(([key, items]) => (
-                <div key={key} className="relative group">
-                  <button className={cn(
-                    "text-sm font-medium py-8",
-                    isDark ? "text-white/70 hover:text-white" : "text-black/70 hover:text-black"
-                  )}>
-                    {key}
-                  </button>
-                  
-                  <div className={cn(
-                    "absolute top-full left-0 mt-2 min-w-[200px] py-2 border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200",
-                    isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                  )}>
-                    {items.map((item) => (
-                      <Link
-                        key={item.label}
-                        to={item.href}
-                        className={cn(
-                          "block px-5 py-3 text-sm transition-colors",
-                          isDark ? "text-white/70 hover:text-white hover:bg-white/5" : "text-black/70 hover:text-black hover:bg-black/5"
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+          {/* DESKTOP LINKS */}
+          <div className="hidden lg:flex items-center gap-10">
+            {Object.entries(navItems).map(([key, items]) => (
+              <div key={key} className="relative group/nav">
+                <button className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors py-4">
+                  {key}
+                </button>
+                <div className="absolute top-full right-0 mt-2 min-w-[240px] bg-black border border-white/10 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 p-2">
+                  {items.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="block px-6 py-4 text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
 
-            <div className="hidden lg:flex items-center gap-6">
-              <motion.button
-                onClick={toggleTheme}
-                className={cn(
-                  "p-3 rounded-full transition-colors",
-                  isDark ? "bg-white/10 text-white hover:bg-white/20" : "bg-black/10 text-black hover:bg-black/20"
-                )}
-                whileTap={{ scale: 0.9 }}
-              >
-                <motion.div
-                  animate={{ rotate: isDark ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {isDark ? <Moon size={18} /> : <Sun size={18} />}
-                </motion.div>
-              </motion.button>
-              <Link
-                to="/contact"
-                className={cn(
-                  "px-6 py-3 text-sm font-semibold transition-colors",
-                  isDark 
-                    ? "bg-white text-black hover:bg-white/90" 
-                    : "bg-black text-white hover:bg-black/90"
-                )}
-              >
-                Get Quote
-              </Link>
-            </div>
+          <div className="flex items-center gap-8">
+            <button 
+              onClick={toggleTheme} 
+              className="group flex items-center gap-3"
+            >
+              <span className="hidden sm:inline text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
+                {isDark ? 'LIGHT_NODE' : 'DARK_NODE'}
+              </span>
+              <div className="w-8 h-8 border border-white flex items-center justify-center rounded-full group-hover:bg-white group-hover:text-black transition-all">
+                <span className="text-[10px] font-bold">{isDark ? 'L' : 'D'}</span>
+              </div>
+            </button>
 
             <button 
               onClick={() => setMobileMenu(true)}
-              className="lg:hidden p-2"
+              className="lg:hidden text-white"
             >
-              <Menu size={24} className={isDark ? "text-white" : "text-black"} />
+              <Menu size={24} />
             </button>
+
+            <Link
+              to="/contact"
+              className="hidden sm:flex px-8 py-4 bg-white text-black font-display font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-transform"
+            >
+              Initialize_Handshake
+            </Link>
           </div>
         </div>
       </nav>

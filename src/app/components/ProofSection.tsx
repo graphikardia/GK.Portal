@@ -32,11 +32,11 @@ export const ProofSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
           <div>
-            <h2 className="text-4xl md:text-8xl mb-4">THE_PROOF</h2>
-            <p className="font-body text-white/30 uppercase tracking-[0.4em] text-xs">Hard Data Over Aesthetic Opinion</p>
+            <h2 className="text-4xl md:text-8xl mb-4">CASE STUDIES</h2>
+            <p className="font-body text-white/30 uppercase tracking-[0.4em] text-xs">Real Results, Real ROI</p>
           </div>
           <div className="text-right">
-            <p className="text-6xl md:text-8xl font-black italic text-stroke-white text-transparent">DATA_DRIVEN</p>
+            <p className="text-6xl md:text-8xl font-black italic text-stroke-white text-transparent">DATA DRIVEN</p>
           </div>
         </div>
 
@@ -52,24 +52,24 @@ export const ProofSection = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-center">
                 <div className="col-span-1">
-                  <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-2">Client_Entity</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-2">Client</p>
                   <h3 className="text-2xl font-black">{study.client}</h3>
                 </div>
                 
                 <div className="col-span-1 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-3">Baseline_Problem</p>
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-3">Challenge</p>
                     <p className="text-sm font-body leading-relaxed group-hover:text-black/80">{study.problem}</p>
                   </div>
                   <div>
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-3">Engine_Deployed</p>
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-3">Our Solution</p>
                     <p className="text-sm font-body leading-relaxed group-hover:text-black/80">{study.solution}</p>
                   </div>
                 </div>
 
-                <div className="col-span-1 text-right">
-                  <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-2">Hard_Outcome</p>
-                  <h4 className="text-5xl md:text-7xl font-black italic">{study.roi}</h4>
+                <div className="col-span-1 text-left md:text-right">
+                  <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 mb-2">Result</p>
+                  <h4 className="text-4xl md:text-7xl font-black italic">{study.roi}</h4>
                   <p className="text-[9px] font-bold mt-2 uppercase tracking-widest group-hover:text-black/60">{study.details}</p>
                 </div>
               </div>
@@ -79,13 +79,13 @@ export const ProofSection = () => {
 
         <div className="mt-32 border border-white/10 p-16 text-center group hover:bg-white transition-all duration-700">
           <img src="/branding/logo_full.png" alt="" className="h-10 mx-auto mb-10 invert group-hover:invert-0" />
-          <h3 className="text-3xl md:text-5xl mb-8 group-hover:text-black">READY_TO_INITIALIZE?</h3>
+          <h3 className="text-3xl md:text-5xl mb-8 group-hover:text-black">READY TO GROW?</h3>
           <p className="font-body text-white/40 max-w-xl mx-auto mb-12 group-hover:text-black/60">
-            We only work with a maximum of 3 clients concurrently to ensure system integrity. 
-            Check availability below.
+            We work with a limited number of clients at a time to ensure exceptional quality. 
+            Let's discuss if we're the right fit.
           </p>
           <button className="px-16 py-6 bg-white text-black font-black uppercase tracking-widest group-hover:bg-black group-hover:text-white transition-colors duration-300">
-            Audit_My_System
+            Book a Strategy Call
           </button>
         </div>
       </div>

@@ -13,49 +13,62 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 500);
+          setTimeout(onComplete, 800);
           return 100;
         }
-        return Math.min(prev + 2, 100);
+        return Math.min(prev + (Math.random() * 5), 100);
       });
-    }, 30);
+    }, 50);
     return () => clearInterval(timer);
   }, [onComplete]);
 
   return (
     <motion.div 
       className={cn(
-        "fixed inset-0 z-[9999] flex flex-col items-center justify-center",
-        isDark ? "bg-[#0a0a0a]" : "bg-white"
+        "fixed inset-0 z-[9999] flex flex-col items-center justify-center p-6",
+        isDark ? "bg-black" : "bg-white"
       )}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8, ease: "circOut" }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center"
-      >
-        <h1 className={cn("text-4xl font-black tracking-wider mb-2", isDark ? "text-white" : "text-black")}>
-          GRAPHIKARDIA
-        </h1>
-        <p className={cn("text-sm uppercase tracking-widest mb-8", isDark ? "text-white/50" : "text-black/50")}>
-          Digital Marketing Agency
-        </p>
-        
-        <div className="w-64 mx-auto">
-          <div className={cn("h-1 rounded-full overflow-hidden", isDark ? "bg-white/10" : "bg-black/10")}>
-            <motion.div 
-              className="h-full bg-[#DC143C]"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-            />
+      <div className="max-w-md w-full text-center">
+        <motion.div
+           initial={{ opacity: 0, scale: 0.95 }}
+           animate={{ opacity: 1, scale: 1 }}
+           className="mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-black tracking-tightest mb-2 uppercase">
+            GRAPHIKARDIA
+          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-px w-12 bg-current opacity-20" />
+            <p className="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">
+              Initializing_System_Nodes
+            </p>
+            <span className="h-px w-12 bg-current opacity-20" />
           </div>
-          <p className={cn("text-xs mt-3", isDark ? "text-white/40" : "text-black/40")}>
-            Loading... {Math.floor(progress)}%
-          </p>
+        </motion.div>
+        
+        <div className="relative h-1 w-full bg-current opacity-5 mb-4">
+          <motion.div 
+            className="absolute top-0 left-0 h-full bg-current"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+          />
         </div>
-      </motion.div>
+        
+        <div className="flex justify-between items-center font-mono text-[10px] opacity-40">
+          <span>BOOT_SEQUENCE</span>
+          <span>{Math.floor(progress)}%</span>
+        </div>
+      </div>
+
+      {/* STARK LOGO WATERMARK */}
+      <img 
+        src="/branding/logo_symbol.png" 
+        className="absolute bottom-12 h-12 opacity-5 animate-pulse" 
+        alt=""
+      />
     </motion.div>
   );
 }

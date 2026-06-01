@@ -33,11 +33,11 @@ export const BentoGrid = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
-            <h2 className="text-4xl md:text-7xl mb-4">THE_ARSENAL</h2>
-            <p className="font-body text-noir-400 uppercase tracking-widest text-sm">Specialized Retainers for Market Dominance</p>
+            <h2 className="text-4xl md:text-7xl mb-4">OUR SERVICES</h2>
+            <p className="font-body text-noir-400 uppercase tracking-widest text-sm">Strategic Solutions for Measurable Growth</p>
           </div>
           <p className="max-w-md text-xs font-mono text-noir-500 uppercase leading-loose">
-            Design without performance is art; performance without design is spam. We deploy strict, data-driven engines only.
+            Design without performance is art; performance without design is noise. We build systems that deliver measurable results.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export const BentoGrid = () => {
                   {service.desc}
                 </p>
                 <div className="pt-6 border-t border-current flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-[10px] font-black uppercase tracking-widest">Deploy_Now</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest">Learn More</span>
                   <span className="text-xl">→</span>
                 </div>
               </div>

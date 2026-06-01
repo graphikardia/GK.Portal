@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Quote, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../lib/ThemeContext';
-import { Footer } from './components/Footer';
 
 const reviews = [
   { id: 1, name: 'SARAH CHEN', role: 'CMO', company: 'AETHER INTEL', quote: "GRAPHIKARDIA DECODED OUR ENTIRE MARKET POSITION. GROWTH WAS IMMEDIATE AND SUSTAINED.", stat: "+140%_ROI" },
@@ -16,13 +15,6 @@ export default function TestimonialsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
-      <nav className="fixed top-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference text-white">
-        <Link to="/" className="flex items-center gap-4">
-          <img src="/branding/logo_symbol.png" alt="GK" className="h-8 logo-filter" />
-          <span className="font-display font-black text-xl tracking-tightest">GRAPHIKARDIA</span>
-        </Link>
-        <Link to="/" className="text-[10px] font-black uppercase tracking-widest hover:opacity-50 transition-opacity">Back_to_Node</Link>
-      </nav>
 
       <section className="pt-52 pb-32 px-6">
         <div className="max-w-[1800px] mx-auto">
@@ -65,8 +57,6 @@ export default function TestimonialsPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

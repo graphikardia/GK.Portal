@@ -49,12 +49,12 @@ export const MedicalHub = () => {
             </div>
 
             <button className="px-12 py-5 bg-obsidian text-white font-display font-black text-xs uppercase tracking-widest hover:invert transition-all duration-300">
-              Audit_Medical_Brand
+              Get a Free Consultation
             </button>
           </div>
 
-          <div className="relative">
-            <div className="border-[20px] border-white shadow-2xl relative z-10 overflow-hidden">
+          <div className="relative mt-12 lg:mt-0">
+            <div className="border-[10px] md:border-[20px] border-white shadow-2xl relative z-10 overflow-hidden">
               <img 
                 src="https://images.unsplash.com/photo-1622253692010-333f2da6028d?q=80&w=1964&auto=format&fit=crop" 
                 alt="Medical Authority" 
@@ -62,14 +62,14 @@ export const MedicalHub = () => {
               />
               <div className="absolute inset-0 bg-obsidian/10 mix-blend-multiply" />
               
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-white/90 backdrop-blur-md">
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-white/90 backdrop-blur-md">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-obsidian/40 mb-1">Case_Study</p>
-                    <h3 className="text-2xl font-black">DR. DARSHANA REDDY</h3>
+                    <h3 className="text-xl md:text-2xl font-black italic">DR. DARSHANA REDDY</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-3xl font-black italic">&lt;2.0s</p>
+                    <p className="text-2xl md:text-3xl font-black italic">&lt;2.0s</p>
                     <p className="text-[8px] font-bold uppercase">Load_Velocity</p>
                   </div>
                 </div>
@@ -77,17 +77,17 @@ export const MedicalHub = () => {
             </div>
             
             {/* FLOATING DECORATIONS */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 border border-obsidian/10 flex items-center justify-center -rotate-12">
-              <img src="/branding/logo_stacked.png" alt="" className="w-24 opacity-20" />
+            <div className="absolute -top-10 -right-10 w-32 h-32 md:w-40 md:h-40 border border-obsidian/10 hidden sm:flex items-center justify-center -rotate-12">
+              <img src="/branding/logo_stacked.png" alt="" className="w-20 md:w-24 opacity-20" />
             </div>
             
-            <div className="absolute -bottom-10 -left-10 bg-obsidian text-white p-8 grid grid-cols-2 gap-8 z-20">
+            <div className="absolute -bottom-10 -left-6 md:-left-10 bg-obsidian text-white p-6 md:p-8 grid grid-cols-2 gap-6 md:gap-8 z-20">
               <div className="group">
-                <h4 className="text-2xl font-black italic">95%</h4>
+                <h4 className="text-xl md:text-2xl font-black italic">95%</h4>
                 <p className="text-[8px] font-bold uppercase text-white/40">Patient_Score</p>
               </div>
               <div className="group">
-                <h4 className="text-2xl font-black italic">60%</h4>
+                <h4 className="text-xl md:text-2xl font-black italic">60%</h4>
                 <p className="text-[8px] font-bold uppercase text-white/40">Cost_Reduction</p>
               </div>
             </div>
