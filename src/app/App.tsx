@@ -99,7 +99,7 @@ function MainLayout() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   return (
     <ThemeProvider>
@@ -110,19 +110,25 @@ export default function App() {
         <Router>
           <ScrollToTop />
           <GlobalSystems />
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<MainLayout />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/testimonials" element={<TestimonialsPage />} />
-            <Route path="/admin" element={<AdminPortal />} />
-            <Route path="*" element={<MainLayout />} />
-          </Routes>
-          <Footer />
+          {loading ? (
+            <LoadingScreen onComplete={() => setLoading(false)} />
+          ) : (
+            <>
+              <Navigation />
+              <Routes>
+                <Route path="/" element={<MainLayout />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/case-studies" element={<CaseStudiesPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/work" element={<WorkPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/admin" element={<AdminPortal />} />
+                <Route path="*" element={<MainLayout />} />
+              </Routes>
+              <Footer />
+            </>
+          )}
         </Router>
       </div>
     </ThemeProvider>
