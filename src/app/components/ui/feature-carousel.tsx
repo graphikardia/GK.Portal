@@ -22,7 +22,7 @@ const FEATURES = [
     label: "Sustainable Sourcing",
     icon: Pizza04Icon,
     image:
-      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200",
+      "/branding/seo-hero.png",
     description: "Ethically sourced ingredients from local farmers.",
   },
   {
@@ -30,7 +30,7 @@ const FEATURES = [
     label: "Community Focused",
     icon: CommandFreeIcons,
     image:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200",
+      "/branding/social-hero.png",
     description: "Building stronger bonds through shared experiences.",
   },
   {
@@ -38,7 +38,7 @@ const FEATURES = [
     label: "Global Reach",
     icon: GlobalSearchIcon,
     image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
+      "/branding/web-hero.png",
     description: "Connecting visionaries across all continents.",
   },
   {
@@ -46,7 +46,7 @@ const FEATURES = [
     label: "Award Winning",
     icon: CheckmarkCircle01Icon,
     image:
-      "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=1200",
+      "/branding/marketing-hero.png",
     description: "Recognized excellence in design and innovation.",
   },
   {
@@ -54,7 +54,7 @@ const FEATURES = [
     label: "Cloud Ready",
     icon: AiCloudIcon,
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200",
+      "/branding/ai-hero.png",
     description: "Scale your infrastructure with seamless ease.",
   },
   {
@@ -62,7 +62,7 @@ const FEATURES = [
     label: "Mobile First",
     icon: SmartPhone01Icon,
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200",
+      "/branding/advertising-hero.png",
     description: "A world-class experience on every single device.",
   },
   {
@@ -70,7 +70,7 @@ const FEATURES = [
     label: "Real-time Analytics",
     icon: DashboardSquare01Icon,
     image:
-      "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200",
+      "/branding/seo-hero.png",
     description: "Insights at your fingertips, updated in real-time.",
   },
   {
@@ -78,7 +78,7 @@ const FEATURES = [
     label: "Enterprise Security",
     icon: CheckmarkCircle01Icon,
     image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200",
+      "/branding/web-hero.png",
     description: "Bank-grade security protocols for your data.",
   },
   {
@@ -86,7 +86,7 @@ const FEATURES = [
     label: "Magic Automations",
     icon: MagicWandIcon,
     image:
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200",
+      "/branding/marketing-hero.png",
     description: "Let AI handle the repetitive tasks for you.",
   },
   {
@@ -94,7 +94,7 @@ const FEATURES = [
     label: "Locally Owned",
     icon: CheckmarkCircle01Icon,
     image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200",
+      "/branding/social-hero.png",
     description: "Supporting local businesses and creators.",
   },
 ];

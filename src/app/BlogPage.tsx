@@ -10,7 +10,7 @@ const posts = [
     excerpt: "Understanding how AI Answer Engines are replacing traditional search results and what it means for high-ticket brands.",
     date: "May 24, 2026",
     cat: "STRATEGY",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+    image: "/branding/seo-hero.png"
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const posts = [
     excerpt: "Why typical WordPress setups fail for medical clinics and the move toward headless performance systems.",
     date: "Jun 02, 2026",
     cat: "INFRASTRUCTURE",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+    image: "/branding/web-hero.png"
   }
 ];
 
@@ -68,7 +68,7 @@ export default function BlogPage() {
                   <p className="text-gk-text2 text-lg leading-relaxed font-body">
                      {post.excerpt}
                   </p>
-                  <Link to={`/blog/${post.id}`} className="inline-flex items-center gap-3 text-white font-bold text-xs uppercase tracking-widest hover:text-gk-accent transition-colors pt-4">
+                  <Link to={`/blog/${post.id}`} className="inline-flex items-center gap-3 text-gk-text1 font-bold text-xs uppercase tracking-widest hover:text-gk-accent transition-colors pt-4">
                      Read Intelligence Report <ArrowRight size={14} />
                   </Link>
                 </div>

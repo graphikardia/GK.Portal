@@ -75,7 +75,7 @@ export default function SocialMediaPage() {
          <div className="container-custom grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
             <div className="lg:col-span-6 relative aspect-square group">
                <img 
-                  src="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2062&auto=format&fit=crop" 
+                  src="/branding/social-hero.png" 
                   alt="Production Studio" 
                   className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000"
                />

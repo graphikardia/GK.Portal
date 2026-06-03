@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 const studies = [
   {
     title: "Healthcare Dominance Protocol",
-    client: "Reddy Medical Group",
+    client: "Dr. Darshana Reddy",
     metrics: [
       { label: "Patient Growth", val: "+210%" },
       { label: "CPA Reduction", val: "-45%" }
     ],
-    image: "https://images.unsplash.com/photo-1519494140681-891791d9b4b3?q=80&w=2074&auto=format&fit=crop"
+    image: "/branding/seo-hero.png"
   },
   {
     title: "Digital Infrastructure Hardening",
@@ -20,7 +20,7 @@ const studies = [
       { label: "Load Velocity", val: "0.4s" },
       { label: "AEO Presence", val: "Top 1%" }
     ],
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+    image: "/branding/web-hero.png"
   }
 ];
 

@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div className="container-custom">
            <div className="aspect-[21/9] w-full relative group">
               <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+                src="/branding/advertising-hero.png" 
                 alt="Studio Environment" 
                 className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000"
               />

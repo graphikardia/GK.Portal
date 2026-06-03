@@ -48,14 +48,14 @@ export const ProofSection = () => {
           </div>
         </div>
 
-        {/* LOGO STRIP / COLLABORATORS */}
-        <div className="mt-40 pt-20 border-t border-gk-border flex flex-col md:flex-row items-center justify-between gap-12 opacity-40 hover:opacity-80 transition-opacity grayscale">
-           <span className="text-[10px] font-mono uppercase tracking-[0.4em] mb-4 md:mb-0">Strategic_Partners</span>
+        {/* CLIENT STRIP */}
+        <div className="mt-40 pt-20 border-t border-gk-border flex flex-col md:flex-row items-center justify-between gap-12 opacity-40 hover:opacity-80 transition-opacity">
+           <span className="text-[10px] font-mono uppercase tracking-[0.4em] mb-4 md:mb-0 text-gk-text2">Trusted By</span>
            <div className="flex flex-wrap justify-center gap-12 md:gap-20">
-              <span className="text-2xl font-bold italic tracking-tighter opacity-50">METAGENICS</span>
-              <span className="text-2xl font-bold italic tracking-tighter opacity-50">KARDIA_X</span>
-              <span className="text-2xl font-bold italic tracking-tighter opacity-50">PRECISION_CLINIC</span>
-              <span className="text-2xl font-bold italic tracking-tighter opacity-50">NODE_TECH</span>
+              <span className="text-lg font-bold tracking-tight text-gk-text1">Koshys Global Academia</span>
+              <span className="text-lg font-bold tracking-tight text-gk-text1">KIMS Bengaluru</span>
+              <span className="text-lg font-bold tracking-tight text-gk-text1">Dr. Darshana Reddy</span>
+              <span className="text-lg font-bold tracking-tight text-gk-text1">Altius Hospital</span>
            </div>
         </div>
       </div>

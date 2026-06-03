@@ -27,7 +27,7 @@ const projects = [
     id: "reddy",
     title: "Dr. Darshana Reddy",
     cat: "Doctors Portfolio Website",
-    image: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?q=80&w=2070&auto=format&fit=crop", 
+    image: "/branding/marketing-hero.png", 
     result: "16+ Years Medical Expertise",
     scope: "Internal Medicine & Diabetologist",
     url: "http://drdarshanareddy.com/"

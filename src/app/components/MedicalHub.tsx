@@ -58,7 +58,7 @@ export const MedicalHub = () => {
             <div className="p-3 bg-gk-secondary border border-gk-border">
                <div className="relative overflow-hidden group aspect-[4/5]">
                   <img 
-                    src="https://images.unsplash.com/photo-1576091160550-217359f4ecf8?q=80&w=2070&auto=format&fit=crop" 
+                    src="/branding/marketing-hero.png" 
                     alt="Precision Medical Marketing" 
                     className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000"
                   />
@@ -66,7 +66,7 @@ export const MedicalHub = () => {
                   
                   <div className="absolute bottom-6 left-6 right-6 p-8 glass-card border border-gk-accent/20">
                      <span className="text-[10px] font-mono text-gk-accent uppercase tracking-widest mb-2 block">Case_Study:01</span>
-                     <h3 className="text-lg font-bold text-white uppercase">Reddy Medical Group</h3>
+                     <h3 className="text-lg font-bold text-white uppercase">Dr. Darshana Reddy</h3>
                      <div className="flex items-center gap-4 mt-4">
                         <span className="text-2xl font-bold text-gk-accent">+210%</span>
                         <span className="text-[9px] font-mono text-gk-text3 uppercase leading-tight">Patient_Lead_Lift</span>
