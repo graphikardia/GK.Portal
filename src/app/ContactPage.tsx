@@ -2,8 +2,11 @@
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, Phone, Globe, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cn } from '../lib/utils';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function ContactPage() {
+  const { isDark } = useTheme();
   return (
     <div className="min-h-screen bg-gk-bg text-gk-text1">
       <section className="pt-52 pb-32 px-6">
@@ -76,7 +79,7 @@ export default function ContactPage() {
                         <input 
                            type="text" 
                            placeholder="John Doe / Clinical Group" 
-                           className="w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none text-white transition-colors"
+                           className={cn("w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none transition-colors", isDark ? "text-white" : "text-black")}
                         />
                      </div>
                      <div className="space-y-4">
@@ -84,7 +87,7 @@ export default function ContactPage() {
                         <input 
                            type="email" 
                            placeholder="email@example.com" 
-                           className="w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none text-white transition-colors"
+                           className={cn("w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none transition-colors", isDark ? "text-white" : "text-black")}
                         />
                      </div>
                      <div className="md:col-span-2 space-y-4">
@@ -92,7 +95,7 @@ export default function ContactPage() {
                         <textarea 
                            rows={4} 
                            placeholder="Describe your current performance bottlenecks..." 
-                           className="w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none text-white transition-colors resize-none"
+                           className={cn("w-full bg-transparent border-b border-gk-border py-4 focus:border-gk-accent outline-none transition-colors resize-none", isDark ? "text-white" : "text-black")}
                         />
                      </div>
                      <div className="md:col-span-2 pt-10">

@@ -73,7 +73,7 @@ export default function TestimonialsPage() {
                         {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                      </div>
                   </div>
-                  <p className={cn("text-lg leading-relaxed italic transition-colors font-body", isDark ? "text-gk-text2 group-hover:text-white" : "text-gray-700")}>"{t.content}"</p>
+                  <p className={cn("text-lg leading-relaxed italic transition-colors font-body", isDark ? "text-gk-text2 group-hover:text-white" : "text-gray-700 group-hover:text-black")}>"{t.content}"</p>
                 </div>
                 
                 <div className={cn("pt-10 border-t flex justify-between items-end gap-4", isDark ? "border-gk-border" : "border-gray-200")}>

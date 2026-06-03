@@ -35,9 +35,22 @@ const projects = [
 ];
 
 const videos = [
-  { id: 1, title: "Medical Authority Campaign", duration: "0:45" },
-  { id: 2, title: "Academic Infrastructure Scale", duration: "1:15" },
-  { id: 3, title: "B2B Surgical Lead Gen", duration: "0:30" }
+  { id: 1, title: "The Hangover Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQM4LTk5Bilmviu1M7upEtc5kGRFhuU8QNlFPSlowsI_NrK5mq7HGCwa1l8PzVkWokGYiBTyvNInrBWbeKfm9m5PTpGt7eEbrNHTZhM.mp4", thumbnail: "/videos/SaveGram.App_AQM4LTk5Bilmviu1M7upEtc5kGRFhuU8QNlFPSlowsI_NrK5mq7HGCwa1l8PzVkWokGYiBTyvNInrBWbeKfm9m5PTpGt7eEbrNHTZhM.webp" },
+  { id: 2, title: "Allergies Awareness Reel", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQMh7virex_qE2amE_eD4VynryeWRI_a9Uz7m0PL1PS7EN4-m7Y3OyAzStcwt2HchJYyQgJV1Z_FdejjRhSszbFWsgNfaqLD3Gsh018.mp4", thumbnail: "/videos/SaveGram.App_AQMh7virex_qE2amE_eD4VynryeWRI_a9Uz7m0PL1PS7EN4-m7Y3OyAzStcwt2HchJYyQgJV1Z_FdejjRhSszbFWsgNfaqLD3Gsh018.webp" },
+  { id: 3, title: "Health Tips Reel", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQMKlFKhcpbQUwf9yr5MhNgj_F8X9UVzm9MA3E6jkjdKV6Ju_Ftx5KxtNuO9mY04giZE3UKQiE23lJ-mnIEt4nmRW-NIJxLuETVqzpA.mp4", thumbnail: "/videos/SaveGram.App_AQMKlFKhcpbQUwf9yr5MhNgj_F8X9UVzm9MA3E6jkjdKV6Ju_Ftx5KxtNuO9mY04giZE3UKQiE23lJ-mnIEt4nmRW-NIJxLuETVqzpA.webp" },
+  { id: 4, title: "Lifestyle Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQMkndN3oOED1CUipzJY8SOu8OOOCpLQ8NY5H95JBEpkNWI35s_LoPixfN1s8p4l4BS5e3m9bW-7fKnEHtIXcOxGldW_oHxIJnWaiFU.mp4", thumbnail: "/videos/SaveGram.App_AQMkndN3oOED1CUipzJY8SOu8OOOCpLQ8NY5H95JBEpkNWI35s_LoPixfN1s8p4l4BS5e3m9bW-7fKnEHtIXcOxGldW_oHxIJnWaiFU.webp" },
+  { id: 5, title: "Product Showcase", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQMKoovkpYmFmUT3dRBrh9rTIWAo7n9pepUO5eInxZ6N5XBEhcnxdGcf2mHv6_3XRjttfyBKj9k_Z9tNHNExKpzdk15ZRo-kcGCHg5c.mp4", thumbnail: "/videos/SaveGram.App_AQMKoovkpYmFmUT3dRBrh9rTIWAo7n9pepUO5eInxZ6N5XBEhcnxdGcf2mHv6_3XRjttfyBKj9k_Z9tNHNExKpzdk15ZRo-kcGCHg5c.webp" },
+  { id: 6, title: "Fitness Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQMT7ml4Hy3q5z0S1puj9nGjcUo3AurEq-FzdOj32bCwUImRRmThqMN-_VRO_Y4qtkoiTiW6ldspE_NEQR-q5lYLYvYPhbHym16Xggs.mp4", thumbnail: "/videos/SaveGram.App_AQMT7ml4Hy3q5z0S1puj9nGjcUo3AurEq-FzdOj32bCwUImRRmThqMN-_VRO_Y4qtkoiTiW6ldspE_NEQR-q5lYLYvYPhbHym16Xggs.webp" },
+  { id: 7, title: "Wellness Tips", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQMuUAi5G5tOnJvyUJXrQCqIqLB3xfl9BEyvUeBbVWqlicZ9t0Ex_MwtCFRQDIhhmtyfaNARzPm9pDqYjLDTCaSnsGT4dulN-oA6OOM.mp4", thumbnail: "/videos/SaveGram.App_AQMuUAi5G5tOnJvyUJXrQCqIqLB3xfl9BEyvUeBbVWqlicZ9t0Ex_MwtCFRQDIhhmtyfaNARzPm9pDqYjLDTCaSnsGT4dulN-oA6OOM.webp" },
+  { id: 8, title: "Quick Tips Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQMxcn6Ygdj9oFOMW18P94wKjl9rScMo2_FtlzjCV6pm-HMEXybJukXfGOSw812mwD4p4DwGwDvoC_436dpP5kYq8eV5qKGKKjQMgh0.mp4", thumbnail: "/videos/SaveGram.App_AQMxcn6Ygdj9oFOMW18P94wKjl9rScMo2_FtlzjCV6pm-HMEXybJukXfGOSw812mwD4p4DwGwDvoC_436dpP5kYq8eV5qKGKKjQMgh0.webp" },
+  { id: 9, title: "Educational Reel", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQMxFmp9goH0yhVFYvzlVe3smsB1-mJAoLF0WFO0qQnjXdg77B19EsJxkJlb9wZh_FoeIwoIEcvyfYZEx16EWaqH3b6xvwIcZ_lCJeo.mp4", thumbnail: "/videos/SaveGram.App_AQMxFmp9goH0yhVFYvzlVe3smsB1-mYN04giZE3UKQiE23lJ-mnIEt4nmRW-NIJxLuETVqzpA.webp" },
+  { id: 10, title: "Behind The Scenes", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQN52egmInXxmEkQpqTyFORdBU2f4sb1VLgpzr1iVHTwu-kIxqSvI60p-6BuhQjH2wDNps3pMhOv1NbCvgOG3txsLNQkhKiC7rp7w_M.mp4", thumbnail: "/videos/SaveGram.App_AQN52egmInXxmEkQpqTyFORdBU2f4sb1VLgpzr1iVHTwu-kIxqSvI60p-6BuhQjH2wDNps3pMhOv1NbCvgOG3txsLNQkhKiC7rp7w_M.webp" },
+  { id: 11, title: "Medicine Explainer", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQNvzIpkdz7hs1qs1Kbmlk6iVnD77RFMAl2ryXODknJe6KYQ6DIqn29hPI-C-WDZ3G3lg_1d-j5W2H_UE7BHcEwNLHYYMD1X6-beSj8.mp4", thumbnail: "/videos/SaveGram.App_AQNvzIpkdz7hs1qs1Kbmlk6iVnD77RFMAl2ryXODknJe6KYQ6DIqn29hPI-C-WDZ3G3lg_1d-j5W2H_UE7BHcEwNLHYYMD1X6-beSj8.webp" },
+  { id: 12, title: "Brand Story", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQO2lKpNYIAichb86UzJb_XkXt6w8Y3YxKu-vCvz4eARHwlfPpkFP-_nfiRtA5O8f953UKMuhBQDMjtdS2fFmVZrlqxVwZI7g1y8Xqs.mp4", thumbnail: "/videos/SaveGram.App_AQO2lKpNYIAichb86UzJb_XkXt6w8Y3YxKu-vCvz4eARHwlfPpkFP-_nfiRtA5O8f953UKMuhBQDMjtdS2fFmVZrlqxVwZI7g1y8Xqs.webp" },
+  { id: 13, title: "Health Awareness", category: "Doctor Explainer", video: "/videos/SaveGram.App_AQOuOZszB7C96_r2QCzhU9qdcMPSRz_njgwbCHmY-DmEzpwfQJo0_LJ3-rZ4lXAoT5e1x8NpeWYC5hBVt9UhtfSK0Y1UB1Ck3pK64KQ.mp4", thumbnail: "/videos/SaveGram.App_AQOuOZszB7C96_r2QCzhU9qdcMPSRz_njgwbCHmY-DmEzpwfQJo0_LJ3-rZ4lXAoT5e1x8NpeWYC5hBVt9UhtfSK0Y1UB1Ck3pK64KQ.webp" },
+  { id: 14, title: "Trending Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQOxyPHDg9ZV6lyz5pCc5vQsz1_IFnAcYv4B0yP3dyFenvUeVskU-ozM5SRoiZ8znW3egYOS8M0kJUzLE-UQBXFQKLBB8JzIuj_r0hA.mp4", thumbnail: "/videos/SaveGram.App_AQOxyPHDg9ZV6lyz5pCc5vQsz1_IFnAcYv4B0yP3dyFenvUeVskU-ozM5SRoiZ8znW3egYOS8M0kJUzLE-UQBXFQKLBB8JzIuj_r0hA.webp" },
+  { id: 15, title: "Lifestyle Vlog", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQOyKkEyNO6Y_TJCaqWtI9gB8AWufHRlndDlbDXqEUvN0V6UXpYvv9LdUrjeBGetdDT5iz4at7rDR8RK4M3TPxBLZriMBDJxM1LiwCE.mp4", thumbnail: "/videos/SaveGram.App_AQOyKkEyNO6Y_TJCaqWtI9gB8AWufHRlndDlbDXqEUvN0V6UXpYvv9LdUrjeBGetdDT5iz4at7rDR8RK4M3TPxBLZriMBDJxM1LiwCE.webp" },
+  { id: 16, title: "Professional Reel", category: "B-Roll Hook", video: "/videos/SaveGram.App_AQOzp7xoBmNcs8wuFuDZhWnjzUzkMcgirff1I663TdPW-fZlinSSdpXKWV9jLEKg5kOIN9ZaBTEDBXFSJXvXPljEsJpBoOVEOR3D7C0.mp4", thumbnail: "/videos/SaveGram.App_AQOzp7xoBmNcs8wuFuDZhWnjzUzkMcgirff1I663TdPW-fZlinSSdpXKWV9jLEKg5kOIN9ZaBTEDBXFSJXvXPljEsJpBoOVEOR3D7C0.webp" },
 ];
 
 export default function WorkPage() {
@@ -128,27 +141,40 @@ export default function WorkPage() {
                </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                {videos.map((vid) => (
-                 <div key={vid.id} className="group relative aspect-[9/16] overflow-hidden rounded-xl border border-gk-border bg-gk-secondary cursor-pointer">
-                    {/* Placeholder for actual <video src="..."></video> */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
-                    
-                    {/* Abstract tech background while videos are loaded in the future */}
-                    <div className="absolute inset-0 opacity-40 group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0">
-                       <img src="/branding/social-hero.png" alt="Reel Thumbnail" className="w-full h-full object-cover" />
-                    </div>
+                 <div key={vid.id} className="group relative aspect-[9/16] overflow-hidden rounded-lg border border-gk-border bg-gk-secondary cursor-pointer">
+                    {/* Thumbnail + Hover Video */}
+                    <img 
+                      src={vid.thumbnail} 
+                      alt={vid.title} 
+                      className="absolute inset-0 w-full h-full object-cover group-hover:opacity-0 transition-opacity duration-300"
+                      loading="lazy"
+                    />
+                    <video
+                      src={vid.video}
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                      onMouseLeave={(e) => { const v = e.target as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
+                    />
 
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center z-20">
-                       <div className="w-16 h-16 rounded-full bg-gk-accent/20 border border-gk-accent flex items-center justify-center group-hover:bg-gk-accent transition-colors">
-                          <Play size={24} className="text-gk-accent group-hover:text-black transition-colors translate-x-0.5" />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+
+                    {/* Play Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center z-20 opacity-100 group-hover:opacity-0 transition-opacity pointer-events-none">
+                       <div className="w-10 h-10 rounded-full bg-black/40 border border-white/30 flex items-center justify-center backdrop-blur-sm">
+                          <Play size={16} className="text-white translate-x-0.5" />
                        </div>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                       <h4 className="text-white font-bold text-lg leading-tight mb-2">{vid.title}</h4>
-                       <span className="text-[10px] font-mono text-gk-accent uppercase tracking-widest">{vid.duration} - Vertical Format</span>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 z-20 pointer-events-none">
+                       <span className="text-[8px] font-mono text-gk-accent uppercase tracking-widest block mb-1">{vid.category}</span>
+                       <h4 className="text-white font-bold text-xs leading-tight">{vid.title}</h4>
                     </div>
                  </div>
                ))}

@@ -16,6 +16,7 @@ const navItems = {
   ],
   Company: [
     { label: 'About Our Mission', href: '/about' },
+    { label: 'The Founder', href: '/founder' },
     { label: 'Client Results', href: '/case-studies' },
     { label: 'Portfolio Vault', href: '/work' },
     { label: 'Expertise Logs', href: '/blog' },

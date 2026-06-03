@@ -19,6 +19,7 @@ import BlogPage from './BlogPage';
 import ContactPage from './ContactPage';
 import WorkPage from './WorkPage';
 import TestimonialsPage from './TestimonialsPage';
+import FounderPage from './FounderPage';
 import { Analytics } from './lib/analytics';
 
 // SERVICE PAGES
@@ -131,6 +132,7 @@ export default function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/work" element={<WorkPage />} />
                 <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/founder" element={<FounderPage />} />
                 <Route path="/admin" element={<AdminPortal />} />
 
                 {/* SERVICE ROUTES */}

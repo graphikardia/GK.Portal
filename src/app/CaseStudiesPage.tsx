@@ -2,6 +2,8 @@
 import { motion } from 'framer-motion';
 import { Target, Zap, ShieldCheck, ArrowRight, BarChart3, Globe, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cn } from '../lib/utils';
+import { useTheme } from '../lib/ThemeContext';
 
 const studies = [
   {
@@ -25,6 +27,7 @@ const studies = [
 ];
 
 export default function CaseStudiesPage() {
+  const { isDark } = useTheme();
   return (
     <div className="min-h-screen bg-gk-bg text-gk-text1">
       <section className="pt-52 pb-32 px-6">
@@ -74,7 +77,7 @@ export default function CaseStudiesPage() {
                       ))}
                    </div>
                    
-                   <Link to={`/case-studies/${i}`} className="inline-flex items-center gap-4 text-white font-bold text-xs uppercase tracking-widest hover:text-gk-accent transition-colors">
+                   <Link to={`/case-studies/${i}`} className={cn("inline-flex items-center gap-4 font-bold text-xs uppercase tracking-widest hover:text-gk-accent transition-colors", isDark ? "text-white" : "text-black")}>
                       View Full Performance Log <ArrowRight size={14} />
                    </Link>
                 </div>

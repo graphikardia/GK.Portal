@@ -2,8 +2,11 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck, Target, Heart, Microscope, Users, Zap, Award, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cn } from '../lib/utils';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function AboutPage() {
+  const { isDark } = useTheme();
   const values = [
     { icon: <Target className="text-gk-accent" />, title: "Hyper-Focus", desc: "We don't do 'general' marketing. We build high-velocity acquisition for elite clinical and B2B brands." },
     { icon: <ShieldCheck className="text-gk-accent" />, title: "Technical Hardening", desc: "Every asset we deploy is engineered for stability, scale, and multi-node performance." },
@@ -82,7 +85,7 @@ export default function AboutPage() {
                {stats.map((s, i) => (
                  <div key={i} className="flex flex-col items-center text-center">
                     <s.icon className="text-gk-accent mb-6 opacity-40" />
-                    <span className="text-4xl md:text-6xl font-bold text-white mb-2">{s.num}</span>
+                    <span className={cn("text-4xl md:text-6xl font-bold mb-2", isDark ? "text-white" : "text-black")}>{s.num}</span>
                     <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-gk-text3">{s.label}</span>
                  </div>
                ))}
