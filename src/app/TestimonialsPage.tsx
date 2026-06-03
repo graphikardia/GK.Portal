@@ -13,7 +13,7 @@ const testimonials = [
     result: "16+ Years Expertise"
   },
   {
-    name: "Dr. Priyanka Dass",
+    name: "Dr. Priyanka Das",
     role: "Consultant - Obstetrician, Gynecologist, Infertility Specialist, Laparoscopic Surgeon",
     content: "Their precision in targeting high-intent patients and establishing digital authority allowed my practice to capture the exact demographic seeking specialized infertility and laparoscopic surgical care.",
     result: "Surgical Authority"
