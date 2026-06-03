@@ -145,10 +145,10 @@ export function Navigation() {
             <div className="p-10 h-full flex flex-col overflow-y-auto">
               <div className="flex items-center justify-between mb-20">
                 <Link to="/" onClick={() => setMobileMenu(false)} className="flex items-center gap-3">
-                  <img src="/branding/logo_symbol.png" alt="GK" className="h-8 brightness-0 invert" />
-                  <span className="font-display font-bold text-lg text-white tracking-tight uppercase">GRAPHIKARDIA</span>
+                  <img src="/branding/logo_symbol.png" alt="GK" className={cn("h-8 transition-all", isDark ? "brightness-0 invert" : "")} />
+                  <span className={cn("font-display font-bold text-lg tracking-tight uppercase", isDark ? "text-white" : "text-black")}>GRAPHIKARDIA</span>
                 </Link>
-                <button onClick={() => setMobileMenu(false)} className="p-3 border border-white/10 text-white">
+                <button onClick={() => setMobileMenu(false)} className={cn("p-3 border", isDark ? "border-white/10 text-white" : "border-black/10 text-black")}>
                   <X size={24} />
                 </button>
               </div>
@@ -165,7 +165,7 @@ export function Navigation() {
                           onClick={() => setMobileMenu(false)}
                           className="flex flex-col gap-1 group"
                         >
-                          <span className="text-4xl font-bold text-white/50 group-hover:text-gk-accent transition-colors">
+                          <span className={cn("text-4xl font-bold transition-colors", isDark ? "text-white/50 group-hover:text-gk-accent" : "text-black/50 group-hover:text-gk-accent")}>
                             {item.label}
                           </span>
                         </Link>

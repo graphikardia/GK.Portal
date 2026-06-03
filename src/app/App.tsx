@@ -89,7 +89,7 @@ function ThemeSync() {
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(isDark ? 'dark' : 'light');
-    document.body.style.backgroundColor = isDark ? '#000000' : '#F8F9FA';
+    // Removed inline background color, allowing index.css var(--gk-bg) to govern properly
   }, [isDark]);
   
   return null;
@@ -113,7 +113,7 @@ export default function App() {
     <ThemeProvider>
       <Analytics />
       <ThemeSync />
-      <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black transition-colors duration-500">
+      <div className="min-h-screen bg-gk-bg text-gk-text1 selection:bg-gk-accent selection:text-black transition-colors duration-500">
         <CustomCursor />
         <Router>
           <ScrollToTop />
